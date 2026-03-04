@@ -1,6 +1,9 @@
 # pio and vscode
 .pio/
 .vscode/
+
+# workspace
+*.code-workspace
 # Prerequisites
 *.d
 
