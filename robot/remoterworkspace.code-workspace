@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../remote"
+		},
+		{
+			"path": "../lib"
+		}
+	],
+	"settings": {}
+}

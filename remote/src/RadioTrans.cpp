@@ -1,22 +1,16 @@
 #include "RadioTrans.h"
 #include <SPI.h>
 #include <RFM69.h>
+#include <RadioProtocol.h>
 
 
 #define RFM69_CS   5
 #define RFM69_INT  6
 #define RFM69_RST  10
 
-#define NETWORKID  42
-#define NODEID     2
-#define TONODEID   1
-#define FREQUENCY  RF69_433MHZ
+#define NODEID     NODE_REMOTE
+#define TONODEID   NODE_ROBOT
 
-enum PacketType : uint8_t {
-    PKT_JOYSTICK = 1,
-    PKT_RSSI     = 2,
-    PKT_BUTTON   = 3
-};
 
 RFM69 radio(RFM69_CS, RFM69_INT);
 
