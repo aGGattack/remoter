@@ -5,7 +5,6 @@
 
 void transiver_init();
 
-bool sendJoystick(uint16_t *XandY, int16_t *masterRSSI, int16_t *slaveRSSI);
-bool sendButton();
+bool sendJoystick(uint16_t *XandY, uint8_t button, int16_t *masterRSSI, int16_t *slaveRSSI);
 
 #endif

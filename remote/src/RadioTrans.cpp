@@ -35,11 +35,11 @@ void transiver_init() {
 
 
 
-bool sendJoystick(uint16_t *XandY, int16_t *masterRSSI, int16_t *slaveRSSI) {
-    uint8_t packet[1 + 4];  
+bool sendJoystick(uint16_t *XandY, uint8_t button, int16_t *masterRSSI, int16_t *slaveRSSI) {
+    uint8_t packet[5];  
 
-    packet[0] = PKT_JOYSTICK;               
-    memcpy(&packet[1], XandY, sizeof(uint16_t) * 2);
+    memcpy(&packet[0], XandY, sizeof(uint16_t) * 2);
+    packet[4] = button;
 
 
     if (!radio.sendWithRetry(TONODEID, packet, sizeof(packet), 5, 20)) {
@@ -58,20 +58,6 @@ bool sendJoystick(uint16_t *XandY, int16_t *masterRSSI, int16_t *slaveRSSI) {
                 return true;
             }
         }
-    }
-
-    Serial.println("Timeout waiting for reply");
-    return false;
-}
-
-bool sendButton() {
-    uint8_t packet[1];  
-
-    packet[0] = PKT_BUTTON;               
-
-    if (!radio.sendWithRetry(TONODEID, packet, sizeof(packet), 5, 20)) {
-        Serial.println("No ACK received");
-        return false;
     }
 
     Serial.println("Timeout waiting for reply");

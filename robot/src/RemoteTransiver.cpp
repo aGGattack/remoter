@@ -32,24 +32,28 @@ void transiver_init() {
     Serial.println("RFM69 init OK");
 }
 
-void handleJoystickPacket() {
+void handleJoystickPacket(uint8_t *data, uint8_t len) {
+    if (len < 5) return;
+
     uint16_t x, y;
+    uint8_t button;
 
-    memcpy(&x, &radio.DATA[1], sizeof(uint16_t));
-    memcpy(&y, &radio.DATA[3], sizeof(uint16_t));
+    memcpy(&x, &data[0], sizeof(uint16_t));
+    memcpy(&y, &data[2], sizeof(uint16_t));
+    button = data[4];
 
-    static int16_t  lastRSSI   = 0;
+    static int16_t lastRSSI = 0;
 
-    lastRSSI   = radio.RSSI;
+    lastRSSI = radio.RSSI;
 
     Serial.print("joy, ");
     Serial.print(x);
     Serial.print(", ");
     Serial.print(y);
     Serial.print(", ");
-    Serial.println(lastRSSI);
-
-    
+    Serial.print(lastRSSI);
+    Serial.print(", ");
+    Serial.println(button);
 }
 
 
@@ -67,7 +71,6 @@ void transiver_receive() {
     static int16_t  lastRSSI = 0;
     static bool havePendingRSSIReply = false;
     static unsigned long replyAt = 0;
-    static bool buttonbool = false;
 
     if (radio.receiveDone()) {
 
@@ -75,34 +78,9 @@ void transiver_receive() {
             radio.sendACK();  
         }
 
-        uint8_t cmd = radio.DATA[0];
-
-        switch (cmd) {
-
-            case PKT_JOYSTICK: {
-                handleJoystickPacket();
-                havePendingRSSIReply = true;
-                //replyAt = millis() + 12; 
-                lastRSSI   = radio.RSSI;
-                break;
-            }
-
-            case PKT_BUTTON:
-                if (buttonbool){
-                    buttonbool = false;
-                    Serial.println("bot, F");
-                }
-                else{
-                    buttonbool = true;
-                    Serial.println("bot, T");
-                }
-                break;
-
-            default:
-                Serial.print("Unknown packet type: ");
-                Serial.println(cmd);
-                break;
-        }
+        handleJoystickPacket(radio.DATA, radio.DATALEN);
+        havePendingRSSIReply = true;
+        lastRSSI = radio.RSSI;
     }
 
     if (havePendingRSSIReply && millis() >= replyAt) {

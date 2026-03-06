@@ -23,18 +23,14 @@ void loop() {
     int16_t masterRSSI = 0;
     int16_t slaveRSSI  = 0;
 
-    readJoystick(XandY);  // Your function that fills X/Y
+    readJoystick(XandY);
 
-    if (sendJoystick(XandY, &masterRSSI, &slaveRSSI)) {
-        Display_draw(masterRSSI, slaveRSSI);  // Send to your display
-    }
-
-    static bool lastState = HIGH;
     bool currentState = digitalRead(BUTTON_PIN);
+    static bool lastState = HIGH;
+    uint8_t buttonPressed = (lastState == HIGH && currentState == LOW) ? 1 : 0;
 
-    if (lastState == HIGH && currentState == LOW) {
-        // Button was just pressed
-        sendButton();
+    if (sendJoystick(XandY, buttonPressed, &masterRSSI, &slaveRSSI)) {
+        Display_draw(masterRSSI, slaveRSSI);
     }
 
     lastState = currentState;
