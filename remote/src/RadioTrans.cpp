@@ -53,7 +53,7 @@ bool sendJoystick(uint16_t *XandY, uint8_t button, int16_t *masterRSSI, int16_t 
         if (radio.receiveDone()) {
             *masterRSSI = radio.RSSI;
 
-            if (radio.DATA[0] == PKT_RSSI && radio.DATALEN == 3) {
+            if (radio.DATALEN == 2) {
                 memcpy(slaveRSSI, &radio.DATA[1], sizeof(int16_t));
                 return true;
             }

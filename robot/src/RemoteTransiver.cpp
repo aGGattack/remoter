@@ -58,9 +58,8 @@ void handleJoystickPacket(uint8_t *data, uint8_t len) {
 
 
 void sendRSSIReply(uint16_t target, int16_t rssi) {
-    uint8_t reply[3];
-    reply[0] = PKT_RSSI;
-    memcpy(&reply[1], &rssi, sizeof(int16_t));
+    uint8_t reply[2];
+    memcpy(&reply[0], &rssi, sizeof(int16_t));
 
     radio.send(target, reply, sizeof(reply));
     radio.receiveDone(); 
