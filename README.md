@@ -72,7 +72,3 @@ pio run -e robot --target upload
 2. Open `pcb/PCB remote.kicad_pro`
 
 ---
-
-## License
-
-MIT License
