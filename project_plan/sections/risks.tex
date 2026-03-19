@@ -1,0 +1,43 @@
+Risk assessment identifies potential issues and mitigation strategies:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{3cm}|p{4cm}|p{4cm}|p{2cm}|}
+\hline
+\textbf{Risk} & \textbf{Description} & \textbf{Mitigation} & \textbf{Impact} \\
+\hline
+PCB Manufacturing Delays & PCB fabrication takes longer than expected & Order PCBs early; have breadboard backup & High \\
+\hline
+Component Availability & Key components out of stock & Order all components at start of design phase & High \\
+\hline
+Range Insufficient & Communication range below 500m & Use higher gain antennas; optimize protocol & Medium \\
+\hline
+Battery Life Below Target & Remote doesn't achieve 8-hour runtime & Optimize firmware; use larger battery & Medium \\
+\hline
+Safety Feature Failure & Motor cutoff doesn't work reliably & Redundant safety systems; extensive testing & High \\
+\hline
+Schedule Overrun & Tasks take longer than planned & Build in buffer time; prioritize critical tasks & Medium \\
+\hline
+Firmware Bugs & Software issues cause system failures & Extensive testing; modular development & Medium \\
+\hline
+3D Print Failures & Enclosure prints fail or don't fit & Multiple prototypes; adjustable design & Low \\
+\hline
+\end{tabular}
+\caption{Risk Assessment Matrix}
+\end{table}
+
+\subsection*{Contingency Plans}
+
+\begin{enumerate}
+    \item \textbf{If PCBs are delayed:} Use breadboard/wire-wrap prototypes to continue firmware development
+    \item \textbf{If range is insufficient:} Implement range extender techniques (higher antenna, lower data rate)
+    \item \textbf{If battery life is insufficient:} Switch to larger battery pack; implement power-saving modes
+    \item \textbf{If safety feature fails testing:} Add redundant microcontroller watchdog; implement failsafe modes
+\end{enumerate}
+
+\subsection*{Project Risks - Priority Actions}
+\begin{itemize}
+    \item \textbf{Priority 1:} Ensure safety shutdown mechanism is thoroughly tested
+    \item \textbf{Priority 2:} Verify 500m range capability early in testing phase
+    \item \textbf{Priority 3:} Complete PCB design with sufficient time for manufacturing
+\end{itemize}

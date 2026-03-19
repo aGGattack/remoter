@@ -1,0 +1,117 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{datetime}
+
+% Danish language support
+\usepackage[danish]{babel}
+
+% Custom commands
+\newcommand{\projectID}{107210}
+\newcommand{\studentName}{August Binner Becktor}
+\newcommand{\studentID}{234396}
+\newcommand{\supervisor}{Jens Christian Andersen, jcan@dtu.dk}
+\newcommand{\projectDate}{\today}
+\newcommand{\duration}{Feb 2 - Jun 8, 2026 (18 weeks)}
+\newcommand{\ECTS}{20}
+
+% Title page
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    \textbf{DANMARKS TEKNISKE UNIVERSITET} \\
+    \textit{Institute of Electrical and Photonic Engineering} \\
+    \vspace{2cm}
+    
+    \textbf{BACHELOR PROJECT PLAN} \\
+    \vspace{1cm}
+    
+    \hrule
+    \vspace{1cm}
+    
+    {\Large\textbf{\projectID}} \\
+    \vspace{0.5cm}
+    \textit{Design of long-range safety control for autonomous robots} \\
+    \hrule
+    
+    \vspace{2cm}
+    
+    \begin{tabular}{ll}
+        \textbf{Student:} & \studentName \\
+        \textbf{Student ID:} & \studentID \\
+        \textbf{Supervisor:} & \supervisor \\
+        \textbf{Date:} & \projectDate \\
+        \textbf{Duration:} & \duration \\
+        \textbf{ECTS:} & \ECTS
+    \end{tabular}
+    
+    \vspace{3cm}
+    
+    \textit{Department of Electrical and Photonic Engineering} \\
+    \textit{DTU Space} \\
+    \textit{Technical University of Denmark}
+    
+\end{titlepage}
+
+% Table of contents
+\newpage
+\tableofcontents
+\newpage
+
+% Content sections
+\section{Project Description}
+\input{sections/description}
+
+\section{Project Scope}
+\input{sections/scope}
+
+\section{Problem Analysis}
+\input{sections/problem}
+
+\section{Objectives}
+\input{sections/objectives}
+
+\section{Deliverables}
+\input{sections/deliverables}
+
+\section{Methodology}
+\input{sections/methodology}
+
+\section{Time Schedule}
+\input{sections/schedule}
+
+\section{Risk Assessment}
+\input{sections/risks}
+
+% References
+\newpage
+\section{References}
+\begin{thebibliography}{99}
+    \bibitem{dtu} DTU - Technical University of Denmark. \textit{Department of Electrical and Photonic Engineering}. Available at: \url{https://www.dtu.dk/english/education/undergraduate/b-eng-and-bsc-in-engineering}
+    \bibitem{project} DTU Project Database. Project ID: \projectID.
+\end{thebibliography}
+
+% Appendices
+\newpage
+\appendix
+\section{Appendix A: Supervisor Confirmation}
+\textit{To be signed by supervisor}
+
+\vspace{2cm}
+\noindent
+\begin{tabular}{p{7cm}p{7cm}}
+    \textbf{Supervisor signature:} & \textbf{Date:} \\
+    & \\
+    \hline
+    \textit{Line for signature} & \\
+\end{tabular}
+
+\end{document}

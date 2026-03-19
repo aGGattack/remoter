@@ -47,8 +47,9 @@
 *.dwo
 
 # KiCad files to ignore
-pcb/fp-info-cache
 pcb/*-backups/
 pcb/*.bak
 pcb/*.lck
 pcb/_autosave*
+pcb/fp-info-cache
+pcb/fp-lib-cache

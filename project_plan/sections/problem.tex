@@ -1,0 +1,25 @@
+Current remote control solutions for outdoor autonomous mobile robots rely on gamepad controllers, which present several limitations:
+
+\subsection*{Limitations of Current Solution}
+\begin{itemize}
+    \item \textbf{Limited Range:} Standard gamepads using Bluetooth or 2.4 GHz wireless have very limited range (typically 10-30 meters), insufficient for outdoor operations.
+    
+    \item \textbf{No Safety Features:} Consumer-grade gamepads lack built-in safety mechanisms for communication loss detection.
+    
+    \item \textbf{Power Consumption:} Gamepads typically have short battery life, unsuitable for extended outdoor deployments.
+    
+    \item \textbf{No Feedback:} Standard gamepads cannot receive data from the robot (battery status, errors, etc.).
+    
+    \item \textbf{Noisy Environments:} 2.4 GHz band is crowded and susceptible to interference.
+\end{itemize}
+
+\subsection*{Problem Statement}
+The current gamepad-based control system is inadequate for outdoor autonomous mobile robots that require:
+\begin{itemize}
+    \item Long-range reliable communication
+    \item Automatic safety shutdown on communication loss
+    \item Extended battery life (8+ hours)
+    \item Bidirectional communication for status updates
+\end{itemize}
+
+This project addresses these limitations by designing a custom long-range remote control system with safety features.
