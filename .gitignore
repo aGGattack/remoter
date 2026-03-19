@@ -45,3 +45,10 @@
 
 # debug information files
 *.dwo
+
+# KiCad files to ignore
+pcb/fp-info-cache
+pcb/*-backups/
+pcb/*.bak
+pcb/*.lck
+pcb/_autosave*
