@@ -1,4 +1,4 @@
-27229659882865594
+27234984059239391
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97314,6 +97314,13 @@ Joystick module matching the thumbsticks in the PS5, for use with Ali Express PS
 5
 5
 Remote-footprints
+Pmos
+SOT23
+MOSFET (P-Channel)
+0
+3
+3
+Remote-footprints
 RFM69HCW(homemade)
 
 
@@ -97341,6 +97348,20 @@ SSD1306(128x32)
 0
 4
 4
+Remote-footprints
+Untitled
+
+
+0
+0
+0
+Remote-footprints
+nmos
+ahana
+MOSFET (N-Channel)
+0
+3
+3
 Resistor_SMD
 R_0201_0603Metric
 Resistor SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator
