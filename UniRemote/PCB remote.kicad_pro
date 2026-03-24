@@ -473,7 +473,9 @@
   },
   "libraries": {
     "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "Remote-PCB-dele"
+    ]
   },
   "meta": {
     "filename": "PCB remote.kicad_pro",

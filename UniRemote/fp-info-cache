@@ -1,4 +1,4 @@
-27234984059239391
+27236758351151011
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97300,12 +97300,26 @@ SPST SPDT DC TE0598-P2
 7
 7
 Remote-footprints
+100SP1T1B1M7QEH(redSwitch)
+100SP1T1B1M7QEH-2
+Switch
+0
+5
+5
+Remote-footprints
 CAPC2012X140N
 0805-ren1
 Capacitor
 0
 2
 2
+Remote-footprints
+HW373
+
+
+0
+6
+4
 Remote-footprints
 Joystick
 Joystick module matching the thumbsticks in the PS5, for use with Ali Express PS5 hall effect sticks. Sensor connections are polarized, so use PS5 sticks only. Datasheet used for layout: C&K THB001P
@@ -97348,13 +97362,6 @@ SSD1306(128x32)
 0
 4
 4
-Remote-footprints
-Untitled
-
-
-0
-0
-0
 Remote-footprints
 nmos
 ahana
