@@ -1,0 +1,237 @@
+(footprint "nmos"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "ahana")
+	(tags "MOSFET (N-Channel)")
+	(property "Reference" "Q**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "8beed833-a317-487f-b632-d3f63f380741")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "nmos"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "2305628d-43cd-4811-838b-232a3aa6d23f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a5b60c8c-ccc4-4c7a-a5ee-5ddf95e37dc3")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "607aa9ec-0137-49e6-9017-2e798befaa4b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -1.7 -1.55)
+		(end -0.7 -1.55)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "468ef975-622d-479b-80e7-799baf83bf16")
+	)
+	(fp_line
+		(start -0.35 -1.46)
+		(end 0.35 -1.46)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "428eae23-4231-475a-a68f-2fdaecb6d763")
+	)
+	(fp_line
+		(start -0.35 1.46)
+		(end -0.35 -1.46)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "383800a5-b711-47a5-ae3c-4a22441ee194")
+	)
+	(fp_line
+		(start 0.35 -1.46)
+		(end 0.35 1.46)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "48f60e89-d0d0-45cf-977b-30d975fe8184")
+	)
+	(fp_line
+		(start 0.35 1.46)
+		(end -0.35 1.46)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7d84e8aa-71c3-41c5-a090-41dbf6dfdb31")
+	)
+	(fp_line
+		(start -1.95 -1.81)
+		(end 1.95 -1.81)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "392b5bc0-c954-4ff6-896a-59eab702af35")
+	)
+	(fp_line
+		(start -1.95 1.81)
+		(end -1.95 -1.81)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d3c061d5-7de4-49db-b372-ccac39cd2ae2")
+	)
+	(fp_line
+		(start 1.95 -1.81)
+		(end 1.95 1.81)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "724b25e9-0b01-4a2b-8c76-83f40af989e1")
+	)
+	(fp_line
+		(start 1.95 1.81)
+		(end -1.95 1.81)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "44cb737c-8807-4a0a-bc1c-bd404f885a37")
+	)
+	(fp_line
+		(start -0.662 -1.46)
+		(end 0.662 -1.46)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "862faf43-005d-4550-bf64-97e5f3275cb0")
+	)
+	(fp_line
+		(start -0.662 -0.51)
+		(end 0.288 -1.46)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "01f87579-d772-4da4-85be-37bac56b96de")
+	)
+	(fp_line
+		(start -0.662 1.46)
+		(end -0.662 -1.46)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f5615cb9-ec46-45e0-9a66-d43fe2761c15")
+	)
+	(fp_line
+		(start 0.662 -1.46)
+		(end 0.662 1.46)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e6f11d24-c44d-4b46-b224-4aaee7348017")
+	)
+	(fp_line
+		(start 0.662 1.46)
+		(end -0.662 1.46)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "3a7f6d9a-2cfa-4c01-8af0-8cf447b244e0")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "baf442e1-0262-4574-badb-00e52870e310")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1.2 -0.95 90)
+		(size 0.7 1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "0aec2287-7554-4cb5-b751-f1a98a186729")
+	)
+	(pad "2" smd rect
+		(at -1.2 0.95 90)
+		(size 0.7 1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "9c4a9857-34c7-4b40-8ac4-80372680d2a4")
+	)
+	(pad "3" smd rect
+		(at 1.2 0 90)
+		(size 0.7 1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "cbe656c9-3af2-4c84-a665-fa8935f97c32")
+	)
+	(embedded_fonts no)
+	(model "BSS138.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

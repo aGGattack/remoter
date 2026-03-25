@@ -128,6 +128,171 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Connector:Conn_01x02_Socket"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x02_Socket"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x02, script generated"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x02_Socket_1_1"
+				(polyline
+					(pts
+						(xy -1.27 0) (xy -0.508 0)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -2.54) (xy -0.508 -2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 -0.508)
+					(mid -0.5058 0)
+					(end 0 0.508)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 -3.048)
+					(mid -0.5058 -2.54)
+					(end 0 -2.032)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C"
 			(pin_numbers
 				(hide yes)
@@ -249,6 +414,130 @@
 				(pin passive line
 					(at 0 -3.81 90)
 					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
 					(name "~"
 						(effects
 							(font
@@ -857,7 +1146,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Remote-PCB-dele:BSS138"
+		(symbol "Remote-PCB-dele:IRLML6344TRPBF"
 			(pin_names
 				(hide yes)
 			)
@@ -873,7 +1162,7 @@
 					(justify left top)
 				)
 			)
-			(property "Value" "BSS138"
+			(property "Value" "IRLML6344TRPBF"
 				(at 11.43 1.27 0)
 				(effects
 					(font
@@ -882,7 +1171,7 @@
 					(justify left top)
 				)
 			)
-			(property "Footprint" "SOT95P240X120-3N"
+			(property "Footprint" "SOT95P237X112-3N"
 				(at 11.43 -98.73 0)
 				(effects
 					(font
@@ -892,7 +1181,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
+			(property "Datasheet" "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c"
 				(at 11.43 -198.73 0)
 				(effects
 					(font
@@ -902,7 +1191,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Compact industry standard SOT-23 surface mount package.; 0.22 A, 50 V. RDS(ON) = 3.5  @ VGS = 10 V. RDS(ON) = 6.0  @ VGS = 4.5 V; Rugged and Reliable.; High density cell design for extremely low RDS(ON)."
+			(property "Description" "IRLML6344TRPBF N-channel MOSFET Transistor, 5 A, 30 V, 3-Pin SOT-23"
 				(at 0 0 0)
 				(effects
 					(font
@@ -911,7 +1200,7 @@
 					(hide yes)
 				)
 			)
-			(property "Height" "1.2"
+			(property "Height" "1.12"
 				(at 11.43 -398.73 0)
 				(effects
 					(font
@@ -921,7 +1210,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Part Number" "512-BSS138"
+			(property "Mouser Part Number" "942-IRLML6344TRPBF"
 				(at 11.43 -498.73 0)
 				(effects
 					(font
@@ -931,7 +1220,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/onsemi-Fairchild/BSS138?qs=HK%252BeIG1iaahCeqBvjB4arg%3D%3D"
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/IRLML6344TRPBF?qs=9%252BKlkBgLFf2w4qS48UOXVw%3D%3D"
 				(at 11.43 -598.73 0)
 				(effects
 					(font
@@ -941,7 +1230,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Name" "onsemi"
+			(property "Manufacturer_Name" "Infineon"
 				(at 11.43 -698.73 0)
 				(effects
 					(font
@@ -951,7 +1240,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Part_Number" "BSS138"
+			(property "Manufacturer_Part_Number" "IRLML6344TRPBF"
 				(at 11.43 -798.73 0)
 				(effects
 					(font
@@ -961,7 +1250,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "BSS138_1_1"
+			(symbol "IRLML6344TRPBF_1_1"
 				(polyline
 					(pts
 						(xy 2.54 0) (xy 5.08 0)
@@ -1152,6 +1441,212 @@
 						)
 					)
 					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Remote-PCB-dele:PR23-5V-900-1A"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "K"
+				(at 29.21 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Value" "PR23-5V-900-1A"
+				(at 29.21 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "PR2312V9001A"
+				(at 29.21 -94.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.sameskydevices.com/product/resource/PR23-12V-900-1A.pdf"
+				(at 29.21 -194.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Description" "PR23-12V-900-1A - 27.4 x 31.8 x 20 mm, 12 V, 30 A, SPST (1 Form A), Power Relay"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Height" "20.3"
+				(at 29.21 -394.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Part Number" "179-PR23-12V-900-1A"
+				(at 29.21 -494.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Same-Sky/PR23-12V-900-1A?qs=T%252BzbugeAwjiVjnpw9TbV2Q%3D%3D"
+				(at 29.21 -594.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Name" "Same Sky"
+				(at 29.21 -694.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Part_Number" "PR23-12V-900-1A"
+				(at 29.21 -794.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(symbol "PR23-5V-900-1A_1_1"
+				(rectangle
+					(start 5.08 2.54)
+					(end 27.94 -7.62)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at 0 0 0)
+					(length 5.08)
+					(name "COM_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 0)
+					(length 5.08)
+					(name "COIL_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -5.08 0)
+					(length 5.08)
+					(name "COM_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 33.02 0 180)
+					(length 5.08)
+					(name "COIL_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 33.02 -2.54 180)
+					(length 5.08)
+					(name "NO"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1517,6 +2012,198 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Remote-PCB-dele:SL1J"
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 11.43 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Value" "SL1J"
+				(at 11.43 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "SODFL3718X130N"
+				(at 11.43 -97.46 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://diotec.com/request/datasheet/sl1a.pdf"
+				(at 11.43 -197.46 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Description" "Rectifier Diode Switching 600V 1A 1000ns 2-Pin SOD-123FL T/R"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Height" "1.3"
+				(at 11.43 -397.46 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Part Number" "637-SL1J"
+				(at 11.43 -497.46 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Diotec-Semiconductor/SL1J?qs=OlC7AqGiEDm%2FUyNJqMVviA%3D%3D"
+				(at 11.43 -597.46 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Name" "Diotec"
+				(at 11.43 -697.46 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Part_Number" "SL1J"
+				(at 11.43 -797.46 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(symbol "SL1J_1_1"
+				(polyline
+					(pts
+						(xy 2.54 0) (xy 5.08 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 2.54) (xy 5.08 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 0) (xy 10.16 2.54) (xy 10.16 -2.54) (xy 5.08 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 10.16 0) (xy 12.7 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 15.24 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_numbers
@@ -1750,25 +2437,141 @@
 		(color 0 0 0 0)
 		(uuid "488cee3a-4d12-4548-8b54-4ae180da3755")
 	)
+	(junction
+		(at 116.84 118.11)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "63cb796b-233a-4273-acdc-f255983e6cb2")
+	)
+	(junction
+		(at 116.84 146.05)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9185baf2-a093-4a56-9ed5-5a7fb6533b5c")
+	)
+	(junction
+		(at 106.68 135.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c5057d64-2a7e-4081-8904-198d48bf043b")
+	)
+	(junction
+		(at 116.84 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d99f4a51-7686-4970-a549-483ce0b7201a")
+	)
 	(no_connect
 		(at 86.36 58.42)
 		(uuid "0e260e12-86c0-4c08-9910-e545113ead65")
+	)
+	(no_connect
+		(at 86.36 130.81)
+		(uuid "1bb21b0d-5ece-4810-ae9e-87ff90e813ae")
+	)
+	(no_connect
+		(at 60.96 113.03)
+		(uuid "2bcb9123-802c-4e11-82e8-0b29a43816a5")
+	)
+	(no_connect
+		(at 86.36 123.19)
+		(uuid "3174479e-3b04-47e4-8cd5-ceeec17acf35")
+	)
+	(no_connect
+		(at 86.36 113.03)
+		(uuid "3ec0aefa-80af-4193-b096-f66da0c7486a")
 	)
 	(no_connect
 		(at 86.36 68.58)
 		(uuid "47e2097d-42aa-4568-8765-9474493b39fb")
 	)
 	(no_connect
+		(at 60.96 120.65)
+		(uuid "52b59e5e-530f-4a78-8777-0a9224f4e86a")
+	)
+	(no_connect
+		(at 71.12 102.87)
+		(uuid "62831ece-c66a-4ad8-b75c-bf199866dbf1")
+	)
+	(no_connect
+		(at 60.96 153.67)
+		(uuid "6ae86593-b03d-466f-a0e0-9e429e8b6af3")
+	)
+	(no_connect
 		(at 86.36 60.96)
 		(uuid "6b8af24b-108b-4773-8b30-7ca80e33bde2")
+	)
+	(no_connect
+		(at 60.96 118.11)
+		(uuid "6fc42d03-3327-4481-b0e7-cbd043c13e3f")
+	)
+	(no_connect
+		(at 60.96 125.73)
+		(uuid "7243e89d-ec27-4c9b-be25-03e8ecdef078")
+	)
+	(no_connect
+		(at 60.96 148.59)
+		(uuid "808bb327-4468-44c9-b5fb-8f4634a537d4")
+	)
+	(no_connect
+		(at 60.96 128.27)
+		(uuid "9a07e2b2-0d23-414d-96cb-72bc868f0efe")
+	)
+	(no_connect
+		(at 86.36 128.27)
+		(uuid "a125ef1c-5e4f-47e4-8701-20833bbea15a")
+	)
+	(no_connect
+		(at 144.78 92.71)
+		(uuid "c052c39d-ac6c-41be-86de-b4f4fc31f7f1")
 	)
 	(no_connect
 		(at 86.36 63.5)
 		(uuid "c2e8440f-ead9-402c-83a2-8d6bb5dc5df9")
 	)
 	(no_connect
+		(at 60.96 146.05)
+		(uuid "c4803375-eccd-4182-8443-298245aac75c")
+	)
+	(no_connect
+		(at 60.96 156.21)
+		(uuid "d4ef702e-7260-411d-a8ba-338ae50d8c37")
+	)
+	(no_connect
+		(at 60.96 123.19)
+		(uuid "d7cbf667-b957-40bb-bed3-3b826b11c45a")
+	)
+	(no_connect
 		(at 86.36 66.04)
 		(uuid "e8eafddc-f666-4cef-9cc1-793365d76c92")
+	)
+	(no_connect
+		(at 86.36 120.65)
+		(uuid "f453e02b-1678-4ac7-9228-5607ebfe8e88")
+	)
+	(no_connect
+		(at 86.36 133.35)
+		(uuid "f882d296-0127-409e-b8b9-62824942d613")
+	)
+	(wire
+		(pts
+			(xy 179.07 109.22) (xy 179.07 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "03025dd4-eaab-4c05-9de5-d9eb33ce4582")
+	)
+	(wire
+		(pts
+			(xy 106.68 135.89) (xy 106.68 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "04a330eb-08ad-4b0f-9192-0788a205bb17")
 	)
 	(wire
 		(pts
@@ -1779,6 +2582,16 @@
 			(type default)
 		)
 		(uuid "075599c0-a645-4a83-9c14-da21583a3d7e")
+	)
+	(wire
+		(pts
+			(xy 104.14 135.89) (xy 106.68 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0990bfc6-4051-4bcd-9b9c-9f5e10f97e3a")
 	)
 	(wire
 		(pts
@@ -1812,6 +2625,26 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 146.05) (xy 116.84 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1938344e-e7ba-46d8-933b-cf2a2296150f")
+	)
+	(wire
+		(pts
+			(xy 134.62 100.33) (xy 134.62 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1c05cce1-f40d-48c0-9cdc-c98d8f4f0c09")
+	)
+	(wire
+		(pts
 			(xy 58.42 66.04) (xy 58.42 90.17)
 		)
 		(stroke
@@ -1829,6 +2662,26 @@
 			(type default)
 		)
 		(uuid "1f746b07-fd43-451a-b605-f1e2b1150e0d")
+	)
+	(wire
+		(pts
+			(xy 147.32 125.73) (xy 147.32 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "216c0408-3778-422b-9b16-4dcc659a8cf7")
+	)
+	(wire
+		(pts
+			(xy 149.86 129.54) (xy 129.54 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "24f663c2-fdf5-4d03-9e7a-99c0bc796653")
 	)
 	(wire
 		(pts
@@ -1852,6 +2705,36 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 100.33) (xy 134.62 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36f17cd0-7c22-4db3-bd4e-d0a781fefb10")
+	)
+	(wire
+		(pts
+			(xy 78.74 100.33) (xy 116.84 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3827590f-ba6c-4a18-92f2-dcb54517633e")
+	)
+	(wire
+		(pts
+			(xy 149.86 125.73) (xy 149.86 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39803356-3cb6-434f-9df3-55ecd7f88cb6")
+	)
+	(wire
+		(pts
 			(xy 60.96 55.88) (xy 41.91 55.88)
 		)
 		(stroke
@@ -1872,6 +2755,16 @@
 	)
 	(wire
 		(pts
+			(xy 179.07 111.76) (xy 179.07 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c11a8c3-81a6-4187-a054-41d4562bb1af")
+	)
+	(wire
+		(pts
 			(xy 90.17 83.82) (xy 52.07 83.82)
 		)
 		(stroke
@@ -1879,6 +2772,16 @@
 			(type default)
 		)
 		(uuid "4fdcbf4f-eb3d-4cc5-b254-4e23526b4521")
+	)
+	(wire
+		(pts
+			(xy 106.68 135.89) (xy 109.22 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51cbba99-8806-4c8e-afaf-e6b2d772d67f")
 	)
 	(wire
 		(pts
@@ -1892,6 +2795,26 @@
 	)
 	(wire
 		(pts
+			(xy 147.32 88.9) (xy 147.32 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7bb5ed5b-71d5-4f12-9630-e117c28dae4f")
+	)
+	(wire
+		(pts
+			(xy 149.86 92.71) (xy 179.07 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7cc97e17-a57b-4119-b4f9-10312a4bf157")
+	)
+	(wire
+		(pts
 			(xy 60.96 60.96) (xy 55.88 60.96)
 		)
 		(stroke
@@ -1902,7 +2825,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 90.17) (xy 93.98 90.17)
+			(xy 58.42 90.17) (xy 91.44 90.17)
 		)
 		(stroke
 			(width 0)
@@ -1912,13 +2835,23 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 90.17) (xy 93.98 138.43)
+			(xy 91.44 90.17) (xy 91.44 138.43)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "9a5e0659-c4c8-4ac5-8a51-da5602db58d7")
+	)
+	(wire
+		(pts
+			(xy 78.74 102.87) (xy 78.74 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aaf9c566-8743-48b4-a122-a78b762968df")
 	)
 	(wire
 		(pts
@@ -1932,7 +2865,47 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 138.43) (xy 93.98 138.43)
+			(xy 134.62 88.9) (xy 147.32 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae6d33d1-ae9e-4451-a11d-3c680e2fd525")
+	)
+	(wire
+		(pts
+			(xy 116.84 115.57) (xy 116.84 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aebd2300-17e3-4377-bc47-7135066bcacb")
+	)
+	(wire
+		(pts
+			(xy 129.54 118.11) (xy 116.84 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3c5a1a1-5f98-445a-886d-1e83ff0f3f25")
+	)
+	(wire
+		(pts
+			(xy 129.54 118.11) (xy 129.54 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b826162e-b6bf-4d33-be21-31b3cb96c76a")
+	)
+	(wire
+		(pts
+			(xy 86.36 138.43) (xy 91.44 138.43)
 		)
 		(stroke
 			(width 0)
@@ -1972,6 +2945,16 @@
 	)
 	(wire
 		(pts
+			(xy 106.68 146.05) (xy 116.84 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cffd6d10-59ec-47a7-964a-3a72884aa93e")
+	)
+	(wire
+		(pts
 			(xy 41.91 140.97) (xy 60.96 140.97)
 		)
 		(stroke
@@ -1982,7 +2965,7 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 87.63) (xy 96.52 87.63)
+			(xy 55.88 87.63) (xy 93.98 87.63)
 		)
 		(stroke
 			(width 0)
@@ -2002,6 +2985,26 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 118.11) (xy 116.84 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e0f233d2-49f3-4263-9994-b6e6d519e09a")
+	)
+	(wire
+		(pts
+			(xy 147.32 128.27) (xy 179.07 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea1056e1-310f-4549-9ded-fbe07f9538a7")
+	)
+	(wire
+		(pts
 			(xy 73.66 48.26) (xy 73.66 44.45)
 		)
 		(stroke
@@ -2012,7 +3015,17 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 135.89) (xy 109.22 135.89)
+			(xy 116.84 140.97) (xy 116.84 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f016261f-2d3a-4cbd-bc9d-d4358d5e8593")
+	)
+	(wire
+		(pts
+			(xy 86.36 135.89) (xy 96.52 135.89)
 		)
 		(stroke
 			(width 0)
@@ -2022,7 +3035,7 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 87.63) (xy 96.52 140.97)
+			(xy 93.98 87.63) (xy 93.98 140.97)
 		)
 		(stroke
 			(width 0)
@@ -2032,13 +3045,83 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 140.97) (xy 86.36 140.97)
+			(xy 93.98 140.97) (xy 86.36 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "f5ae9022-0247-437c-a3a4-ef6e5d01d603")
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Socket")
+		(at 184.15 109.22 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1501cb34-2142-4fd6-b062-375622fcacc3")
+		(property "Reference" "J3"
+			(at 185.42 109.2199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x02_Socket"
+			(at 185.42 111.7599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical"
+			(at 184.15 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 184.15 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 184.15 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "62894c67-9c23-48c1-8ab7-84f4ea1ca734")
+		)
+		(pin "2"
+			(uuid "f66eb907-8ea9-4f6a-b81d-6eb7b37180c8")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -2132,7 +3215,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 68.58 43.4848 0)
 			(effects
 				(font
@@ -2201,7 +3284,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical"
 			(at 73.66 78.74 0)
 			(effects
 				(font
@@ -2235,6 +3318,197 @@
 			(project ""
 				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
 					(reference "J2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Remote-PCB-dele:IRLML6344TRPBF")
+		(at 109.22 135.89 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "410e0382-07ff-4cb3-b78c-37ca8b42e803")
+		(property "Reference" "Q1"
+			(at 120.65 132.0799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "IRLML6344TRPBF"
+			(at 120.65 134.6199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Remote-footprints:SOT95P237X112-3N(nmosTansRelay)"
+			(at 120.65 234.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c"
+			(at 120.65 334.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "IRLML6344TRPBF N-channel MOSFET Transistor, 5 A, 30 V, 3-Pin SOT-23"
+			(at 109.22 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" "1.12"
+			(at 120.65 534.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "942-IRLML6344TRPBF"
+			(at 120.65 634.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/IRLML6344TRPBF?qs=9%252BKlkBgLFf2w4qS48UOXVw%3D%3D"
+			(at 120.65 734.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "Infineon"
+			(at 120.65 834.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "IRLML6344TRPBF"
+			(at 120.65 934.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2969a28a-aff8-4cda-92a4-dd89d09451e9")
+		)
+		(pin "2"
+			(uuid "eb20cdab-9f40-4be0-907a-bfa4be07be91")
+		)
+		(pin "3"
+			(uuid "8c71ff7f-cdbe-4574-9a0a-fd4fbf274faf")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "Q1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 116.84 148.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "49fa28b9-9483-4dfc-a548-4c7e5362b6a9")
+		(property "Reference" "#PWR06"
+			(at 116.84 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 116.84 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 116.84 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 116.84 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 116.84 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "60b3513c-5ffc-4eec-ade0-a2924da84401")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -2301,6 +3575,128 @@
 			(project ""
 				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
 					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Remote-PCB-dele:SL1J")
+		(at 116.84 100.33 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "769583e9-ee3c-4563-81cf-26d56d85b7f4")
+		(property "Reference" "D1"
+			(at 120.65 106.6799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "SL1J"
+			(at 120.65 109.2199 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Remote-footprints:SODFL3718X130N(diode)"
+			(at 19.38 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://diotec.com/request/datasheet/sl1a.pdf"
+			(at -80.62 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "Rectifier Diode Switching 600V 1A 1000ns 2-Pin SOD-123FL T/R"
+			(at 116.84 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" "1.3"
+			(at -280.62 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "637-SL1J"
+			(at -380.62 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Diotec-Semiconductor/SL1J?qs=OlC7AqGiEDm%2FUyNJqMVviA%3D%3D"
+			(at -480.62 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "Diotec"
+			(at -580.62 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "SL1J"
+			(at -680.62 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "73ce345d-e3dc-4828-8c43-485823bb7e99")
+		)
+		(pin "1"
+			(uuid "bdd7b7aa-6d02-4fb4-acd0-ba0c0f7b1b07")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -2522,6 +3918,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 100.33 135.89 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "afbcdb92-0a57-4fe2-9526-ef7824cdbb59")
+		(property "Reference" "R1"
+			(at 100.33 129.54 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100"
+			(at 100.33 132.08 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 100.33 137.668 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 100.33 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 100.33 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8183183e-d7fe-4b53-a39b-1ee2944f29fa")
+		)
+		(pin "2"
+			(uuid "ff06067a-0f1f-4451-bf03-8c06afa2d10f")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 76.2 102.87 0)
 		(unit 1)
@@ -2588,17 +4052,17 @@
 		)
 	)
 	(symbol
-		(lib_id "Remote-PCB-dele:BSS138")
-		(at 109.22 135.89 0)
+		(lib_id "Remote-PCB-dele:PR23-5V-900-1A")
+		(at 149.86 92.71 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "cfc0d885-3055-45d6-8ead-c7f27c6a3b51")
-		(property "Reference" "Q1"
-			(at 120.65 132.0799 0)
+		(uuid "c655b1b2-71bc-4e53-8628-68e21dac1c1c")
+		(property "Reference" "K1"
+			(at 153.67 107.9499 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2606,8 +4070,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "BSS138"
-			(at 120.65 134.6199 0)
+		(property "Value" "PR23-5V-900-1A"
+			(at 153.67 110.4899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2615,8 +4079,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "SOT95P240X120-3N"
-			(at 120.65 234.62 0)
+		(property "Footprint" "Remote-footprints:PR235V9001A"
+			(at 54.94 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2625,8 +4089,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
-			(at 120.65 334.62 0)
+		(property "Datasheet" "https://www.sameskydevices.com/product/resource/PR23-12V-900-1A.pdf"
+			(at -45.06 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2635,8 +4099,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Compact industry standard SOT-23 surface mount package.; 0.22 A, 50 V. RDS(ON) = 3.5  @ VGS = 10 V. RDS(ON) = 6.0  @ VGS = 4.5 V; Rugged and Reliable.; High density cell design for extremely low RDS(ON)."
-			(at 109.22 135.89 0)
+		(property "Description" "PR23-12V-900-1A - 27.4 x 31.8 x 20 mm, 12 V, 30 A, SPST (1 Form A), Power Relay"
+			(at 149.86 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2644,18 +4108,8 @@
 				(hide yes)
 			)
 		)
-		(property "Height" "1.2"
-			(at 120.65 534.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "512-BSS138"
-			(at 120.65 634.62 0)
+		(property "Height" "20.3"
+			(at -245.06 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2664,8 +4118,8 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/onsemi-Fairchild/BSS138?qs=HK%252BeIG1iaahCeqBvjB4arg%3D%3D"
-			(at 120.65 734.62 0)
+		(property "Mouser Part Number" "179-PR23-12V-900-1A"
+			(at -345.06 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2674,8 +4128,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Name" "onsemi"
-			(at 120.65 834.62 0)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Same-Sky/PR23-12V-900-1A?qs=T%252BzbugeAwjiVjnpw9TbV2Q%3D%3D"
+			(at -445.06 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2684,8 +4138,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "BSS138"
-			(at 120.65 934.62 0)
+		(property "Manufacturer_Name" "Same Sky"
+			(at -545.06 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2694,19 +4148,35 @@
 				(hide yes)
 			)
 		)
-		(pin "3"
-			(uuid "1261b6cf-ee6c-4c93-be1e-41cac6204ad6")
+		(property "Manufacturer_Part_Number" "PR23-12V-900-1A"
+			(at -645.06 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
 		)
 		(pin "1"
-			(uuid "3dd79a28-9e18-4089-bc2d-69f6010cf1e2")
+			(uuid "dfaf2fd0-dafd-41e5-844a-670decf9b848")
+		)
+		(pin "3"
+			(uuid "3d5e2337-e072-4009-a86c-a401d9043ddc")
 		)
 		(pin "2"
-			(uuid "07228e53-d37f-48c8-a3ef-6a88f68ea188")
+			(uuid "a32b9f7c-2550-48fd-b4da-9e7fd8992f48")
+		)
+		(pin "4"
+			(uuid "3706132a-1aa7-4114-9490-ddc5e7f2c95a")
+		)
+		(pin "5"
+			(uuid "a3c09e75-e4a1-480d-ab17-c0b88cc9c59f")
 		)
 		(instances
 			(project ""
 				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
-					(reference "Q1")
+					(reference "K1")
 					(unit 1)
 				)
 			)
@@ -2780,6 +4250,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 106.68 142.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e78cba0a-06ba-465a-816e-b1e8e305bd44")
+		(property "Reference" "R2"
+			(at 109.22 140.9699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 109.22 143.5099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 104.902 142.24 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 106.68 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 106.68 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6aa9b746-e8eb-4eb1-87d5-e465a6636926")
+		)
+		(pin "2"
+			(uuid "6dd17646-6d1d-4061-b40d-78dac0e6ea84")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:Conn_01x01_Socket")
 		(at 91.44 53.34 0)
 		(unit 1)
@@ -2807,7 +4347,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical"
 			(at 91.44 53.34 0)
 			(effects
 				(font
@@ -2874,7 +4414,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "RF_Module:HOPERF_RFM69HW"
+		(property "Footprint" "Remote-footprints:RFM69HCW(homemade)"
 			(at 73.66 76.2 0)
 			(effects
 				(font
