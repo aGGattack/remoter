@@ -432,6 +432,357 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:D"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "D_0_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27) (xy -1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:LED"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "LED"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Light emitting diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "LED diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "LED_0_1"
+				(polyline
+					(pts
+						(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -1.27) (xy -1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "LED_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:R"
 			(pin_numbers
 				(hide yes)
@@ -1146,7 +1497,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Remote-PCB-dele:IRLML6344TRPBF"
+		(symbol "Remote-PCB-dele:BSS138"
 			(pin_names
 				(hide yes)
 			)
@@ -1162,7 +1513,7 @@
 					(justify left top)
 				)
 			)
-			(property "Value" "IRLML6344TRPBF"
+			(property "Value" "BSS138"
 				(at 11.43 1.27 0)
 				(effects
 					(font
@@ -1171,7 +1522,7 @@
 					(justify left top)
 				)
 			)
-			(property "Footprint" "SOT95P237X112-3N"
+			(property "Footprint" "SOT95P240X120-3N"
 				(at 11.43 -98.73 0)
 				(effects
 					(font
@@ -1181,7 +1532,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c"
+			(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
 				(at 11.43 -198.73 0)
 				(effects
 					(font
@@ -1191,7 +1542,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "IRLML6344TRPBF N-channel MOSFET Transistor, 5 A, 30 V, 3-Pin SOT-23"
+			(property "Description" "Compact industry standard SOT-23 surface mount package.; 0.22 A, 50 V. RDS(ON) = 3.5  @ VGS = 10 V. RDS(ON) = 6.0  @ VGS = 4.5 V; Rugged and Reliable.; High density cell design for extremely low RDS(ON)."
 				(at 0 0 0)
 				(effects
 					(font
@@ -1200,7 +1551,7 @@
 					(hide yes)
 				)
 			)
-			(property "Height" "1.12"
+			(property "Height" "1.2"
 				(at 11.43 -398.73 0)
 				(effects
 					(font
@@ -1210,7 +1561,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Part Number" "942-IRLML6344TRPBF"
+			(property "Mouser Part Number" "512-BSS138"
 				(at 11.43 -498.73 0)
 				(effects
 					(font
@@ -1220,7 +1571,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/IRLML6344TRPBF?qs=9%252BKlkBgLFf2w4qS48UOXVw%3D%3D"
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/onsemi-Fairchild/BSS138?qs=HK%252BeIG1iaahCeqBvjB4arg%3D%3D"
 				(at 11.43 -598.73 0)
 				(effects
 					(font
@@ -1230,7 +1581,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Name" "Infineon"
+			(property "Manufacturer_Name" "onsemi"
 				(at 11.43 -698.73 0)
 				(effects
 					(font
@@ -1240,7 +1591,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Part_Number" "IRLML6344TRPBF"
+			(property "Manufacturer_Part_Number" "BSS138"
 				(at 11.43 -798.73 0)
 				(effects
 					(font
@@ -1250,7 +1601,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "IRLML6344TRPBF_1_1"
+			(symbol "BSS138_1_1"
 				(polyline
 					(pts
 						(xy 2.54 0) (xy 5.08 0)
@@ -1451,7 +1802,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Remote-PCB-dele:PR23-5V-900-1A"
+		(symbol "Remote-PCB-dele:G5V-1-DC5"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1464,7 +1815,7 @@
 					(justify left top)
 				)
 			)
-			(property "Value" "PR23-5V-900-1A"
+			(property "Value" "G5V-1-DC5"
 				(at 29.21 5.08 0)
 				(effects
 					(font
@@ -1473,7 +1824,7 @@
 					(justify left top)
 				)
 			)
-			(property "Footprint" "PR2312V9001A"
+			(property "Footprint" "G5V1DC24"
 				(at 29.21 -94.92 0)
 				(effects
 					(font
@@ -1483,7 +1834,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://www.sameskydevices.com/product/resource/PR23-12V-900-1A.pdf"
+			(property "Datasheet" "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/e0fe38be7aeeddc666870f4f0da80cdc.pdf"
 				(at 29.21 -194.92 0)
 				(effects
 					(font
@@ -1493,7 +1844,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "PR23-12V-900-1A - 27.4 x 31.8 x 20 mm, 12 V, 30 A, SPST (1 Form A), Power Relay"
+			(property "Description" "PCB Relay, SPDT, 1A SPDT PCB Mount Non-Latching Relay PC Pin, 1 A, 5V dc"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1502,7 +1853,7 @@
 					(hide yes)
 				)
 			)
-			(property "Height" "20.3"
+			(property "Height" "10"
 				(at 29.21 -394.92 0)
 				(effects
 					(font
@@ -1512,7 +1863,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Part Number" "179-PR23-12V-900-1A"
+			(property "Mouser Part Number" "653-G5V-1-DC5"
 				(at 29.21 -494.92 0)
 				(effects
 					(font
@@ -1522,7 +1873,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Same-Sky/PR23-12V-900-1A?qs=T%252BzbugeAwjiVjnpw9TbV2Q%3D%3D"
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Omron-Electronics/G5V-1-DC5?qs=Pjd0UV7BHP%2FGqZ0zy8DG3Q%3D%3D"
 				(at 29.21 -594.92 0)
 				(effects
 					(font
@@ -1532,7 +1883,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Name" "Same Sky"
+			(property "Manufacturer_Name" "OMRON Electronics"
 				(at 29.21 -694.92 0)
 				(effects
 					(font
@@ -1542,7 +1893,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Part_Number" "PR23-12V-900-1A"
+			(property "Manufacturer_Part_Number" "G5V-1-DC5"
 				(at 29.21 -794.92 0)
 				(effects
 					(font
@@ -1552,7 +1903,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "PR23-5V-900-1A_1_1"
+			(symbol "G5V-1-DC5_1_1"
 				(rectangle
 					(start 5.08 2.54)
 					(end 27.94 -7.62)
@@ -1564,10 +1915,10 @@
 						(type background)
 					)
 				)
-				(pin passive line
+				(pin no_connect line
 					(at 0 0 0)
 					(length 5.08)
-					(name "COM_1"
+					(name "NC"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1603,14 +1954,14 @@
 				(pin passive line
 					(at 0 -5.08 0)
 					(length 5.08)
-					(name "COM_2"
+					(name "COM_1"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "3"
+					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1621,14 +1972,14 @@
 				(pin passive line
 					(at 33.02 0 180)
 					(length 5.08)
-					(name "COIL_2"
+					(name "NO"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "4"
+					(number "10"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1639,14 +1990,32 @@
 				(pin passive line
 					(at 33.02 -2.54 180)
 					(length 5.08)
-					(name "NO"
+					(name "COIL_2"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "5"
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 33.02 -5.08 180)
+					(length 5.08)
+					(name "COM_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1937,7 +2306,7 @@
 						)
 					)
 				)
-				(pin no_connect line
+				(pin bidirectional line
 					(at 12.7 0 180)
 					(length 2.54)
 					(name "DIO2"
@@ -1955,7 +2324,7 @@
 						)
 					)
 				)
-				(pin no_connect line
+				(pin bidirectional line
 					(at 12.7 -2.54 180)
 					(length 2.54)
 					(name "DIO3"
@@ -2002,198 +2371,6 @@
 						)
 					)
 					(number "10"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Remote-PCB-dele:SL1J"
-			(pin_names
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 11.43 5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Value" "SL1J"
-				(at 11.43 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Footprint" "SODFL3718X130N"
-				(at 11.43 -97.46 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://diotec.com/request/datasheet/sl1a.pdf"
-				(at 11.43 -197.46 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Description" "Rectifier Diode Switching 600V 1A 1000ns 2-Pin SOD-123FL T/R"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Height" "1.3"
-				(at 11.43 -397.46 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" "637-SL1J"
-				(at 11.43 -497.46 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Diotec-Semiconductor/SL1J?qs=OlC7AqGiEDm%2FUyNJqMVviA%3D%3D"
-				(at 11.43 -597.46 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Name" "Diotec"
-				(at 11.43 -697.46 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Part_Number" "SL1J"
-				(at 11.43 -797.46 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(symbol "SL1J_1_1"
-				(polyline
-					(pts
-						(xy 2.54 0) (xy 5.08 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 2.54) (xy 5.08 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 0) (xy 10.16 2.54) (xy 10.16 -2.54) (xy 5.08 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 10.16 0) (xy 12.7 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 0 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 15.24 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2432,16 +2609,22 @@
 		)
 	)
 	(junction
+		(at 116.84 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3eb3be03-a5fe-4e68-9b1f-92527e0eed04")
+	)
+	(junction
+		(at 110.49 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "479cc9bd-1eee-434a-8aff-e5743f7310b7")
+	)
+	(junction
 		(at 73.66 44.45)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "488cee3a-4d12-4548-8b54-4ae180da3755")
-	)
-	(junction
-		(at 116.84 118.11)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "63cb796b-233a-4273-acdc-f255983e6cb2")
 	)
 	(junction
 		(at 116.84 146.05)
@@ -2450,16 +2633,16 @@
 		(uuid "9185baf2-a093-4a56-9ed5-5a7fb6533b5c")
 	)
 	(junction
+		(at 116.84 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b25848bc-00a4-41d0-8fc5-7ccb6a822f02")
+	)
+	(junction
 		(at 106.68 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c5057d64-2a7e-4081-8904-198d48bf043b")
-	)
-	(junction
-		(at 116.84 100.33)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d99f4a51-7686-4970-a549-483ce0b7201a")
 	)
 	(no_connect
 		(at 86.36 58.42)
@@ -2490,6 +2673,10 @@
 		(uuid "52b59e5e-530f-4a78-8777-0a9224f4e86a")
 	)
 	(no_connect
+		(at 133.35 124.46)
+		(uuid "57f43379-7f50-4d02-a544-4aa71011ead1")
+	)
+	(no_connect
 		(at 71.12 102.87)
 		(uuid "62831ece-c66a-4ad8-b75c-bf199866dbf1")
 	)
@@ -2498,16 +2685,8 @@
 		(uuid "6ae86593-b03d-466f-a0e0-9e429e8b6af3")
 	)
 	(no_connect
-		(at 86.36 60.96)
-		(uuid "6b8af24b-108b-4773-8b30-7ca80e33bde2")
-	)
-	(no_connect
 		(at 60.96 118.11)
 		(uuid "6fc42d03-3327-4481-b0e7-cbd043c13e3f")
-	)
-	(no_connect
-		(at 60.96 125.73)
-		(uuid "7243e89d-ec27-4c9b-be25-03e8ecdef078")
 	)
 	(no_connect
 		(at 60.96 148.59)
@@ -2522,24 +2701,16 @@
 		(uuid "a125ef1c-5e4f-47e4-8701-20833bbea15a")
 	)
 	(no_connect
-		(at 144.78 92.71)
-		(uuid "c052c39d-ac6c-41be-86de-b4f4fc31f7f1")
-	)
-	(no_connect
-		(at 86.36 63.5)
-		(uuid "c2e8440f-ead9-402c-83a2-8d6bb5dc5df9")
-	)
-	(no_connect
 		(at 60.96 146.05)
 		(uuid "c4803375-eccd-4182-8443-298245aac75c")
 	)
 	(no_connect
-		(at 60.96 156.21)
-		(uuid "d4ef702e-7260-411d-a8ba-338ae50d8c37")
+		(at 138.43 91.44)
+		(uuid "cef480d2-1de6-4b33-9771-789fc9da04c9")
 	)
 	(no_connect
-		(at 60.96 123.19)
-		(uuid "d7cbf667-b957-40bb-bed3-3b826b11c45a")
+		(at 60.96 156.21)
+		(uuid "d4ef702e-7260-411d-a8ba-338ae50d8c37")
 	)
 	(no_connect
 		(at 86.36 66.04)
@@ -2555,7 +2726,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 109.22) (xy 179.07 92.71)
+			(xy 154.94 87.63) (xy 154.94 107.95)
 		)
 		(stroke
 			(width 0)
@@ -2595,6 +2766,16 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 107.95) (xy 116.84 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c20eb5c-4e28-46d6-bd28-257c32ef0c7e")
+	)
+	(wire
+		(pts
 			(xy 39.37 135.89) (xy 60.96 135.89)
 		)
 		(stroke
@@ -2615,7 +2796,7 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 55.88) (xy 90.17 83.82)
+			(xy 99.06 55.88) (xy 99.06 83.82)
 		)
 		(stroke
 			(width 0)
@@ -2635,13 +2816,23 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 100.33) (xy 134.62 88.9)
+			(xy 124.46 85.09) (xy 124.46 100.33)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "1c05cce1-f40d-48c0-9cdc-c98d8f4f0c09")
+	)
+	(wire
+		(pts
+			(xy 138.43 124.46) (xy 138.43 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1c70576a-c16e-4024-9a95-bd9c14c025fb")
 	)
 	(wire
 		(pts
@@ -2665,26 +2856,6 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 125.73) (xy 147.32 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "216c0408-3778-422b-9b16-4dcc659a8cf7")
-	)
-	(wire
-		(pts
-			(xy 149.86 129.54) (xy 129.54 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "24f663c2-fdf5-4d03-9e7a-99c0bc796653")
-	)
-	(wire
-		(pts
 			(xy 44.45 138.43) (xy 60.96 138.43)
 		)
 		(stroke
@@ -2695,7 +2866,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 55.88) (xy 90.17 55.88)
+			(xy 86.36 55.88) (xy 99.06 55.88)
 		)
 		(stroke
 			(width 0)
@@ -2705,33 +2876,23 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 100.33) (xy 134.62 100.33)
+			(xy 133.35 91.44) (xy 133.35 87.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "36f17cd0-7c22-4db3-bd4e-d0a781fefb10")
+		(uuid "37246f71-1248-4d84-9fd6-e77a17514521")
 	)
 	(wire
 		(pts
-			(xy 78.74 100.33) (xy 116.84 100.33)
+			(xy 78.74 100.33) (xy 110.49 100.33)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "3827590f-ba6c-4a18-92f2-dcb54517633e")
-	)
-	(wire
-		(pts
-			(xy 149.86 125.73) (xy 149.86 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "39803356-3cb6-434f-9df3-55ecd7f88cb6")
 	)
 	(wire
 		(pts
@@ -2755,7 +2916,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 111.76) (xy 179.07 128.27)
+			(xy 154.94 110.49) (xy 154.94 128.27)
 		)
 		(stroke
 			(width 0)
@@ -2765,7 +2926,7 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 83.82) (xy 52.07 83.82)
+			(xy 99.06 83.82) (xy 52.07 83.82)
 		)
 		(stroke
 			(width 0)
@@ -2785,6 +2946,26 @@
 	)
 	(wire
 		(pts
+			(xy 135.89 124.46) (xy 135.89 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c5c6991-9ff1-48bf-af2c-29e7bb9813a6")
+	)
+	(wire
+		(pts
+			(xy 135.89 85.09) (xy 124.46 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "628f1975-efb8-4261-81aa-98ad6dda4ed1")
+	)
+	(wire
+		(pts
 			(xy 39.37 53.34) (xy 39.37 135.89)
 		)
 		(stroke
@@ -2792,26 +2973,6 @@
 			(type default)
 		)
 		(uuid "770bdd0e-571e-47b5-82f2-e270160adf4f")
-	)
-	(wire
-		(pts
-			(xy 147.32 88.9) (xy 147.32 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7bb5ed5b-71d5-4f12-9630-e117c28dae4f")
-	)
-	(wire
-		(pts
-			(xy 149.86 92.71) (xy 179.07 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7cc97e17-a57b-4119-b4f9-10312a4bf157")
 	)
 	(wire
 		(pts
@@ -2835,6 +2996,16 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 100.33) (xy 124.46 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9702cb6a-c852-471b-8119-34d7ae0b3d96")
+	)
+	(wire
+		(pts
 			(xy 91.44 90.17) (xy 91.44 138.43)
 		)
 		(stroke
@@ -2842,6 +3013,26 @@
 			(type default)
 		)
 		(uuid "9a5e0659-c4c8-4ac5-8a51-da5602db58d7")
+	)
+	(wire
+		(pts
+			(xy 138.43 128.27) (xy 154.94 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a08b8ee3-687b-418c-9a6c-2e50042dab25")
+	)
+	(wire
+		(pts
+			(xy 135.89 91.44) (xy 135.89 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a72a838f-16a2-49fa-8712-dc7bbb21e3cd")
 	)
 	(wire
 		(pts
@@ -2865,43 +3056,13 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 88.9) (xy 147.32 88.9)
+			(xy 133.35 87.63) (xy 154.94 87.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ae6d33d1-ae9e-4451-a11d-3c680e2fd525")
-	)
-	(wire
-		(pts
-			(xy 116.84 115.57) (xy 116.84 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aebd2300-17e3-4377-bc47-7135066bcacb")
-	)
-	(wire
-		(pts
-			(xy 129.54 118.11) (xy 116.84 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b3c5a1a1-5f98-445a-886d-1e83ff0f3f25")
-	)
-	(wire
-		(pts
-			(xy 129.54 118.11) (xy 129.54 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b826162e-b6bf-4d33-be21-31b3cb96c76a")
+		(uuid "b559059a-1779-4787-8c8f-e6d61cb7f024")
 	)
 	(wire
 		(pts
@@ -2912,6 +3073,16 @@
 			(type default)
 		)
 		(uuid "c0ac588f-6332-4acc-a423-415e8946b12e")
+	)
+	(wire
+		(pts
+			(xy 116.84 125.73) (xy 135.89 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c19e9f4a-7218-4ec9-b737-b9dcc254e324")
 	)
 	(wire
 		(pts
@@ -2985,23 +3156,13 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 118.11) (xy 116.84 125.73)
+			(xy 110.49 100.33) (xy 116.84 100.33)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e0f233d2-49f3-4263-9994-b6e6d519e09a")
-	)
-	(wire
-		(pts
-			(xy 147.32 128.27) (xy 179.07 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ea1056e1-310f-4549-9ded-fbe07f9538a7")
+		(uuid "dd637d0f-00e4-4268-8d13-3ce51d0f34f5")
 	)
 	(wire
 		(pts
@@ -3053,9 +3214,231 @@
 		)
 		(uuid "f5ae9022-0247-437c-a3a4-ef6e5d01d603")
 	)
+	(global_label "DIO2"
+		(shape bidirectional)
+		(at 60.96 123.19 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "693bee69-20c1-4aaa-98a7-b0c0f7c7d941")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 52.4487 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "DIO2"
+		(shape bidirectional)
+		(at 86.36 60.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a18cc436-0ca5-4baf-85ef-9b5b1c65d8ec")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 94.8713 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "DIO3"
+		(shape bidirectional)
+		(at 86.36 63.5 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b37c50ab-f2bb-4c48-b1a0-2ac814a91f0f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 94.8713 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "DIO3"
+		(shape bidirectional)
+		(at 60.96 125.73 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c76490c1-8f09-49ed-a4aa-1c9ae63e9665")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 52.4487 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Remote-PCB-dele:G5V-1-DC5")
+		(at 138.43 91.44 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "02db9cd6-249c-4697-9280-c864972b7594")
+		(property "Reference" "K1"
+			(at 142.24 106.6799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "G5V-1-DC5"
+			(at 142.24 109.2199 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Remote-footprints:G5V1DC24"
+			(at 43.51 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/e0fe38be7aeeddc666870f4f0da80cdc.pdf"
+			(at -56.49 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "PCB Relay, SPDT, 1A SPDT PCB Mount Non-Latching Relay PC Pin, 1 A, 5V dc"
+			(at 138.43 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" "10"
+			(at -256.49 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "653-G5V-1-DC5"
+			(at -356.49 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Omron-Electronics/G5V-1-DC5?qs=Pjd0UV7BHP%2FGqZ0zy8DG3Q%3D%3D"
+			(at -456.49 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "OMRON Electronics"
+			(at -556.49 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "G5V-1-DC5"
+			(at -656.49 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "01e9c7f0-5a18-4f32-a049-3f352b5a3502")
+		)
+		(pin "1"
+			(uuid "6b31b967-2b60-4a1d-857f-2422a475253f")
+		)
+		(pin "5"
+			(uuid "13a08649-55e9-4b17-83a9-6e15bd8d00d0")
+		)
+		(pin "10"
+			(uuid "2c1e372f-1bbc-449b-958f-ee36fe65c565")
+		)
+		(pin "6"
+			(uuid "9edb5e91-ff35-4542-a355-379fe61c4817")
+		)
+		(pin "9"
+			(uuid "165e3580-f0a3-4a65-858b-159e3009409a")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "K1")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Socket")
-		(at 184.15 109.22 0)
+		(at 160.02 107.95 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3064,7 +3447,7 @@
 		(fields_autoplaced yes)
 		(uuid "1501cb34-2142-4fd6-b062-375622fcacc3")
 		(property "Reference" "J3"
-			(at 185.42 109.2199 0)
+			(at 161.29 107.9499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3073,7 +3456,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Socket"
-			(at 185.42 111.7599 0)
+			(at 161.29 110.4899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3082,7 +3465,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical"
-			(at 184.15 109.22 0)
+			(at 160.02 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3091,7 +3474,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 184.15 109.22 0)
+			(at 160.02 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3100,7 +3483,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 184.15 109.22 0)
+			(at 160.02 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3184,6 +3567,94 @@
 			(project ""
 				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
 					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D")
+		(at 116.84 104.14 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "30fd29ff-bdc0-4630-929b-660df6d0e07b")
+		(property "Reference" "D1"
+			(at 119.38 102.8699 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "D"
+			(at 119.38 105.4099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Remote-footprints:SODFL3816X120N(diode den vi har)"
+			(at 116.84 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 116.84 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Diode"
+			(at 116.84 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 116.84 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 116.84 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "8099a2e1-9e81-4d99-9cd4-4e13ef44bf1f")
+		)
+		(pin "1"
+			(uuid "904ded0c-5a9e-44cb-8c73-1f81dc2feec9")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -3324,55 +3795,33 @@
 		)
 	)
 	(symbol
-		(lib_id "Remote-PCB-dele:IRLML6344TRPBF")
-		(at 109.22 135.89 0)
+		(lib_id "Device:R")
+		(at 110.49 96.52 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "410e0382-07ff-4cb3-b78c-37ca8b42e803")
-		(property "Reference" "Q1"
-			(at 120.65 132.0799 0)
+		(uuid "45dfa771-63cb-4362-9cc9-c7a662ff86ac")
+		(property "Reference" "R4"
+			(at 104.14 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Value" "IRLML6344TRPBF"
-			(at 120.65 134.6199 0)
+		(property "Value" "620"
+			(at 106.68 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Footprint" "Remote-footprints:SOT95P237X112-3N(nmosTansRelay)"
-			(at 120.65 234.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c"
-			(at 120.65 334.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Description" "IRLML6344TRPBF N-channel MOSFET Transistor, 5 A, 30 V, 3-Pin SOT-23"
-			(at 109.22 135.89 0)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 108.712 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3380,69 +3829,34 @@
 				(hide yes)
 			)
 		)
-		(property "Height" "1.12"
-			(at 120.65 534.62 0)
+		(property "Datasheet" "~"
+			(at 110.49 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "942-IRLML6344TRPBF"
-			(at 120.65 634.62 0)
+		(property "Description" "Resistor"
+			(at 110.49 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/IRLML6344TRPBF?qs=9%252BKlkBgLFf2w4qS48UOXVw%3D%3D"
-			(at 120.65 734.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" "Infineon"
-			(at 120.65 834.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "IRLML6344TRPBF"
-			(at 120.65 934.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
 				(hide yes)
 			)
 		)
 		(pin "1"
-			(uuid "2969a28a-aff8-4cda-92a4-dd89d09451e9")
+			(uuid "899fd80d-6786-40ff-bc45-09f2bad12b65")
 		)
 		(pin "2"
-			(uuid "eb20cdab-9f40-4be0-907a-bfa4be07be91")
-		)
-		(pin "3"
-			(uuid "8c71ff7f-cdbe-4574-9a0a-fd4fbf274faf")
+			(uuid "e9945878-26b2-46ee-ba9c-cd9a9240d382")
 		)
 		(instances
-			(project ""
+			(project "UniRobot"
 				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
-					(reference "Q1")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -3515,6 +3929,83 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:LED")
+		(at 129.54 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "550afdf1-c740-41e7-91c5-c7bf7cdd33cb")
+		(property "Reference" "D2"
+			(at 131.1275 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LED"
+			(at 131.1275 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder"
+			(at 129.54 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 129.54 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 129.54 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 129.54 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8106bd31-038d-48ca-b0e0-9ec2512774fd")
+		)
+		(pin "2"
+			(uuid "d02d9d14-6a73-4662-aa0f-e79188bb2d54")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "D2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 73.66 44.45 0)
 		(unit 1)
@@ -3581,17 +4072,26 @@
 		)
 	)
 	(symbol
-		(lib_id "Remote-PCB-dele:SL1J")
-		(at 116.84 100.33 270)
+		(lib_id "power:+3.3V")
+		(at 118.11 69.85 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "769583e9-ee3c-4563-81cf-26d56d85b7f4")
-		(property "Reference" "D1"
-			(at 120.65 106.6799 90)
+		(uuid "8c9096f4-a647-4c60-9bb4-f06615596a41")
+		(property "Reference" "#PWR07"
+			(at 121.92 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 114.3 69.8499 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3599,37 +4099,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SL1J"
-			(at 120.65 109.2199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Remote-footprints:SODFL3718X130N(diode)"
-			(at 19.38 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://diotec.com/request/datasheet/sl1a.pdf"
-			(at -80.62 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Description" "Rectifier Diode Switching 600V 1A 1000ns 2-Pin SOD-123FL T/R"
-			(at 116.84 100.33 0)
+		(property "Footprint" ""
+			(at 118.11 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3637,66 +4108,108 @@
 				(hide yes)
 			)
 		)
-		(property "Height" "1.3"
-			(at -280.62 111.76 0)
+		(property "Datasheet" ""
+			(at 118.11 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "637-SL1J"
-			(at -380.62 111.76 0)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 118.11 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
-		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Diotec-Semiconductor/SL1J?qs=OlC7AqGiEDm%2FUyNJqMVviA%3D%3D"
-			(at -480.62 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" "Diotec"
-			(at -580.62 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "SL1J"
-			(at -680.62 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "73ce345d-e3dc-4828-8c43-485823bb7e99")
 		)
 		(pin "1"
-			(uuid "bdd7b7aa-6d02-4fb4-acd0-ba0c0f7b1b07")
+			(uuid "b2b27b78-63db-42f4-be77-b98f0f856cdd")
 		)
 		(instances
-			(project ""
+			(project "UniRobot"
 				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
-					(reference "D1")
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 110.49 88.9 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "931e7585-ec86-4625-9af4-e41092f89286")
+		(property "Reference" "D3"
+			(at 102.87 87.3125 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LED"
+			(at 105.41 87.3125 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder"
+			(at 110.49 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 110.49 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 110.49 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 110.49 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f37bbba8-e2a8-4ca0-94f2-4dba68f43b6a")
+		)
+		(pin "2"
+			(uuid "eb9b3d4e-97c2-442e-82a7-c3d2a7c52663")
+		)
+		(instances
+			(project "UniRobot"
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "D3")
 					(unit 1)
 				)
 			)
@@ -3918,6 +4431,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 133.35 69.85 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a9829513-2fc4-4e23-8be2-46dc473fc30b")
+		(property "Reference" "#PWR08"
+			(at 139.7 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 137.16 69.8499 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 133.35 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 133.35 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 133.35 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8c590680-ed45-49f2-96e6-dba242985ad0")
+		)
+		(instances
+			(project "UniRobot"
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "#PWR08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 100.33 135.89 90)
 		(unit 1)
@@ -3986,6 +4566,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 110.49 85.09 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b26333b6-6bcb-4892-b921-1922f4111ef5")
+		(property "Reference" "#PWR09"
+			(at 110.49 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 110.4899 81.28 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 110.49 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 110.49 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 110.49 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f2feac7c-baaa-4411-9fdc-e08a6d74da0f")
+		)
+		(instances
+			(project "UniRobot"
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "#PWR09")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 76.2 102.87 0)
 		(unit 1)
@@ -4046,137 +4693,6 @@
 			(project ""
 				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
 					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Remote-PCB-dele:PR23-5V-900-1A")
-		(at 149.86 92.71 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c655b1b2-71bc-4e53-8628-68e21dac1c1c")
-		(property "Reference" "K1"
-			(at 153.67 107.9499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "PR23-5V-900-1A"
-			(at 153.67 110.4899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Remote-footprints:PR235V9001A"
-			(at 54.94 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.sameskydevices.com/product/resource/PR23-12V-900-1A.pdf"
-			(at -45.06 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Description" "PR23-12V-900-1A - 27.4 x 31.8 x 20 mm, 12 V, 30 A, SPST (1 Form A), Power Relay"
-			(at 149.86 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Height" "20.3"
-			(at -245.06 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "179-PR23-12V-900-1A"
-			(at -345.06 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Same-Sky/PR23-12V-900-1A?qs=T%252BzbugeAwjiVjnpw9TbV2Q%3D%3D"
-			(at -445.06 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" "Same Sky"
-			(at -545.06 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "PR23-12V-900-1A"
-			(at -645.06 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dfaf2fd0-dafd-41e5-844a-670decf9b848")
-		)
-		(pin "3"
-			(uuid "3d5e2337-e072-4009-a86c-a401d9043ddc")
-		)
-		(pin "2"
-			(uuid "a32b9f7c-2550-48fd-b4da-9e7fd8992f48")
-		)
-		(pin "4"
-			(uuid "3706132a-1aa7-4114-9490-ddc5e7f2c95a")
-		)
-		(pin "5"
-			(uuid "a3c09e75-e4a1-480d-ab17-c0b88cc9c59f")
-		)
-		(instances
-			(project ""
-				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
-					(reference "K1")
 					(unit 1)
 				)
 			)
@@ -4251,6 +4767,74 @@
 	)
 	(symbol
 		(lib_id "Device:R")
+		(at 121.92 69.85 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e4c8d470-d2e6-41c4-baf7-d3cb9af17f4c")
+		(property "Reference" "R3"
+			(at 121.92 63.5 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "280"
+			(at 121.92 66.04 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 121.92 68.072 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 121.92 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 121.92 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3adbfe2f-4c9b-45e2-8043-7bd96b1b83b9")
+		)
+		(pin "2"
+			(uuid "b5de9b4a-6bb1-4e71-84a0-c1472784c028")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
 		(at 106.68 142.24 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4314,6 +4898,131 @@
 			(project ""
 				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Remote-PCB-dele:BSS138")
+		(at 109.22 135.89 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f4d94e62-656d-4718-889e-c05c2d11c930")
+		(property "Reference" "Q1"
+			(at 120.65 132.0799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "BSS138"
+			(at 120.65 134.6199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Remote-footprints:nmos"
+			(at 120.65 234.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
+			(at 120.65 334.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "Compact industry standard SOT-23 surface mount package.; 0.22 A, 50 V. RDS(ON) = 3.5  @ VGS = 10 V. RDS(ON) = 6.0  @ VGS = 4.5 V; Rugged and Reliable.; High density cell design for extremely low RDS(ON)."
+			(at 109.22 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" "1.2"
+			(at 120.65 534.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "512-BSS138"
+			(at 120.65 634.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/onsemi-Fairchild/BSS138?qs=HK%252BeIG1iaahCeqBvjB4arg%3D%3D"
+			(at 120.65 734.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "onsemi"
+			(at 120.65 834.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "BSS138"
+			(at 120.65 934.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "28291ed8-53ea-4af9-bfb3-7263bd912b46")
+		)
+		(pin "2"
+			(uuid "c2c8fa45-e8bb-455a-b6c7-e7e7a0a2e304")
+		)
+		(pin "3"
+			(uuid "17ed8a47-091d-4e09-91a8-d6db272df35a")
+		)
+		(instances
+			(project ""
+				(path "/85141b5a-c23f-4f13-aa6b-4172b6b123a3"
+					(reference "Q1")
 					(unit 1)
 				)
 			)

@@ -1,4 +1,4 @@
-27242081655475024
+27245631396620460
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97314,6 +97314,13 @@ Capacitor
 2
 2
 Remote-footprints
+G5V1DC24
+G5V-1
+Relay or Contactor
+0
+6
+6
+Remote-footprints
 HW373
 
 
@@ -97365,6 +97372,13 @@ RFM69HW
 Remote-footprints
 SODFL3718X130N(diode)
 SOD-123FL(H=1.3mm)
+Diode
+0
+2
+2
+Remote-footprints
+SODFL3816X120N(diode)
+SOD-123F
 Diode
 0
 2
