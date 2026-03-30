@@ -5,35 +5,48 @@
 
 
 #define BUTTON_PIN A2
+#define VBATPIN A7
+
+
+
+volatile uint8_t buttonState = 0;
+
+
+void handleButton() {
+    buttonState = !buttonState;
+}
 
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial) delay(10); 
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), handleButton, FALLING);
 
   transiver_init();
   Display_init();
 
+
 }
 
 void loop() {
-  uint16_t XandY[2];
-    int16_t masterRSSI = 0;
-    int16_t slaveRSSI  = 0;
+  uint8_t x, y;
+  int16_t masterRSSI = 0;
+  int8_t slaveRSSI = 0;
+  uint8_t robotBattery = 0;
+  float remoteBattery = 0;
 
-    readJoystick(XandY);
+  readJoystick(&x, &y);
 
-    bool currentState = digitalRead(BUTTON_PIN);
-    static bool lastState = HIGH;
-    uint8_t buttonPressed = (lastState == HIGH && currentState == LOW) ? 1 : 0;
+  float measuredvbat = analogRead(VBATPIN);
+  measuredvbat *= 2;
+  measuredvbat *= 3.3;
+  measuredvbat /= 1024;
+  remoteBattery = measuredvbat;
 
-    if (sendJoystick(XandY, buttonPressed, &masterRSSI, &slaveRSSI)) {
-        Display_draw(masterRSSI, slaveRSSI);
-    }
+  if (sendData(x, y, buttonState, &masterRSSI, &slaveRSSI, &robotBattery)) {
+    Display_draw(slaveRSSI, remoteBattery, robotBattery);
+  }
 
-    lastState = currentState;
-
-    delay(100);
+  delay(100);
 }

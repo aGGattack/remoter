@@ -22,7 +22,6 @@ void Display_init() {
   }
   Serial.println("OLED found");
 
-  // Force known-good state (NO setContrast)
   display.clearDisplay();
   display.ssd1306_command(SSD1306_DISPLAYON);
   display.ssd1306_command(SSD1306_NORMALDISPLAY);
@@ -32,10 +31,8 @@ void Display_init() {
 void Display_test() {
   display.clearDisplay();
 
-  // Draw a white border
   display.drawRect(0, 0, 128, 32, SSD1306_WHITE);
 
-  // Draw diagonal line
   display.drawLine(0, 0, 127, 31, SSD1306_WHITE);
 
   display.display();
@@ -46,17 +43,22 @@ void Display_clear() {
   display.display();
 }
 
-void Display_draw(int loRa, int batteri) {
+void Display_draw(int8_t rssi, float remoteBattery, uint8_t robotBattery) {
   display.clearDisplay();
-  display.setTextSize(2);
+  display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
 
-  display.print("master:");
-  display.println(loRa);
+  display.print("RSSI:");
+  display.println(rssi);
 
-  display.print("slave:");
-  display.println(batteri);
+  display.print("R:");
+  display.print(remoteBattery, 1);
+  display.print("V");
+
+  display.print("  B:");
+  display.print(robotBattery);
+  display.println("V");
 
   display.display();
 }

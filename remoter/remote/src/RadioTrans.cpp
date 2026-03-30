@@ -1,16 +1,16 @@
 #include "RadioTrans.h"
 #include <SPI.h>
 #include <RFM69.h>
-#include <RadioProtocol.h>
 
 
 #define RFM69_CS   5
 #define RFM69_INT  6
 #define RFM69_RST  10
 
-#define NODEID     NODE_REMOTE
-#define TONODEID   NODE_ROBOT
-
+#define NETWORKID  42
+#define NODEID     2
+#define TONODEID   1
+#define FREQUENCY  RF69_433MHZ
 
 RFM69 radio(RFM69_CS, RFM69_INT);
 
@@ -28,38 +28,26 @@ void transiver_init() {
         while (1);
     }
     radio.setHighPower();
-    //radio.encrypt("sampleEncryptKey"); 
 
     Serial.println("RFM69 init OK");
 }
 
 
 
-bool sendJoystick(uint16_t *XandY, uint8_t button, int16_t *masterRSSI, int16_t *slaveRSSI) {
-    uint8_t packet[5];  
-
-    memcpy(&packet[0], XandY, sizeof(uint16_t) * 2);
-    packet[4] = button;
-
+bool sendData(uint8_t x, uint8_t y, uint8_t button, int16_t *masterRSSI, int8_t *slaveRSSI, uint8_t *battery) {
+    uint8_t packet[3];
+    packet[0] = x;
+    packet[1] = y;
+    packet[2] = button;
 
     if (!radio.sendWithRetry(TONODEID, packet, sizeof(packet), 5, 20)) {
         Serial.println("No ACK received");
         return false;
     }
 
+    *masterRSSI = radio.RSSI;
+    *slaveRSSI = (int8_t)radio.DATA[0];
+    *battery = radio.DATA[1];
 
-    unsigned long start = millis();
-    while (millis() - start < 80) {
-        if (radio.receiveDone()) {
-            *masterRSSI = radio.RSSI;
-
-            if (radio.DATALEN == 2) {
-                memcpy(slaveRSSI, &radio.DATA[1], sizeof(int16_t));
-                return true;
-            }
-        }
-    }
-
-    Serial.println("Timeout waiting for reply");
-    return false;
+    return true;
 }

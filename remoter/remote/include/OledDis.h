@@ -4,4 +4,4 @@
 void Display_init();
 void Display_test();
 void Display_clear();
-void Display_draw(int loRa, int batteri);
+void Display_draw(int8_t rssi, float remoteBattery, uint8_t robotBattery);
