@@ -7883,10 +7883,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "ed3857b8-1c01-4ced-905b-10ba5e4ce4f9")
 		(property "Reference" "S2"
-			(at 262.89 139.6999 90)
+			(at 256.286 158.496 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7895,7 +7894,7 @@
 			)
 		)
 		(property "Value" "TL3301TF160QG"
-			(at 262.89 142.2399 90)
+			(at 249.936 161.29 90)
 			(effects
 				(font
 					(size 1.27 1.27)
