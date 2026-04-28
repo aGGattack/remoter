@@ -2,52 +2,71 @@
 #include <SPI.h>
 #include <RFM69.h>
 
+#define RFM69_CS    A5
+#define RFM69_RST   A4
+#define RFM69_INT   6
+#define RFM69_DIO2  11
+#define RFM69_DIO3  12
 
-#define RFM69_CS   5
-#define RFM69_INT  6
-#define RFM69_RST  10
-
-#define NETWORKID  42
-#define NODEID     2
-#define TONODEID   1
-#define FREQUENCY  RF69_433MHZ
+#define NETWORKID   42
+#define NODEID      2
+#define TONODEID    1
+#define FREQUENCY   RF69_433MHZ
 
 RFM69 radio(RFM69_CS, RFM69_INT);
 
-
-void transiver_init() {
+void transiver_init()
+{
     pinMode(RFM69_RST, OUTPUT);
     digitalWrite(RFM69_RST, HIGH);
-    delay(100);
+    delay(50);
     digitalWrite(RFM69_RST, LOW);
-    delay(100);
-    
+    delay(50);
 
-    if (!radio.initialize(FREQUENCY, NODEID, NETWORKID)) {
+    SPI.begin();
+
+    if (!radio.initialize(FREQUENCY, NODEID, NETWORKID))
+    {
         Serial.println("RFM69 init FAILED");
         while (1);
     }
+
     radio.setHighPower();
 
     Serial.println("RFM69 init OK");
 }
 
-
-
-bool sendData(uint8_t x, uint8_t y, uint8_t button, int16_t *masterRSSI, int8_t *slaveRSSI, uint8_t *battery) {
+bool sendData(uint8_t x,
+              uint8_t y,
+              uint8_t button,
+              uint8_t *battery,
+              char *robotName,
+              int8_t *RSSI)
+{
     uint8_t packet[3];
     packet[0] = x;
     packet[1] = y;
     packet[2] = button;
 
-    if (!radio.sendWithRetry(TONODEID, packet, sizeof(packet), 5, 20)) {
+    if (!radio.sendWithRetry(TONODEID, packet, sizeof(packet), 5, 20))
+    {
         Serial.println("No ACK received");
         return false;
     }
 
-    *masterRSSI = radio.RSSI;
-    *slaveRSSI = (int8_t)radio.DATA[0];
-    *battery = radio.DATA[1];
+    *battery = radio.DATA[0];
+
+    for (int i = 0; i < 14; i++)
+    {
+        robotName[i] = (char)radio.DATA[i + 1];
+
+        if (robotName[i] == '\0')
+            break;
+    }
+
+    robotName[14] = '\0';
+
+    *RSSI = radio.RSSI;
 
     return true;
 }

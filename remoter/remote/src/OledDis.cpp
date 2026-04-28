@@ -23,6 +23,7 @@ void Display_init() {
   Serial.println("OLED found");
 
   display.clearDisplay();
+  display.setRotation(2);
   display.ssd1306_command(SSD1306_DISPLAYON);
   display.ssd1306_command(SSD1306_NORMALDISPLAY);
   display.display();
@@ -43,22 +44,25 @@ void Display_clear() {
   display.display();
 }
 
-void Display_draw(int8_t rssi, float remoteBattery, uint8_t robotBattery) {
+void Display_draw(char *name, float remoteBattery, uint8_t robotBattery, int8_t RSSI) {
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
 
-  display.print("RSSI:");
-  display.println(rssi);
+  display.print("Name:");
+  display.println(name);
 
   display.print("R:");
   display.print(remoteBattery, 1);
   display.print("V");
 
-  display.print("  B:");
-  display.print(robotBattery);
+  display.print("B:");
+  display.print(robotBattery , 1);
   display.println("V");
+
+  display.print("RSSI:");
+  display.println(RSSI);
 
   display.display();
 }

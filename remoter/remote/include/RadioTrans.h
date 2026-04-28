@@ -5,6 +5,10 @@
 
 void transiver_init();
 
-bool sendData(uint8_t x, uint8_t y, uint8_t button, int16_t *masterRSSI, int8_t *slaveRSSI, uint8_t *battery);
-
+bool sendData(uint8_t x,
+              uint8_t y,
+              uint8_t button,
+              uint8_t *battery,
+              char *robotName,
+              int8_t *RSSI);
 #endif
