@@ -6,6 +6,5 @@
 void transiver_init();
 void transiver_receive();
 void readPiSerial();
-void printRSSI();
 
 #endif

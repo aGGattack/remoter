@@ -1,6 +1,7 @@
 #include <SPI.h>
 #include <RFM69.h>
 #include "RemoteTransiver.h"
+#include <RFM69registers.h>
 
 #define RFM69_CS   A5
 #define RFM69_INT  6
@@ -8,16 +9,23 @@
 #define ESTOP      A3
 #define LED_PIN    13
 
+
 #define NETWORKID  42
 #define NODEID     1
 #define TONODEID   2
 #define FREQUENCY  RF69_433MHZ
+#define LATENCY_PACKET 0x42
+#define PACKET_TEST 0x55
 
 RFM69 radio(RFM69_CS, RFM69_INT);
 
 float batteryVoltage = 0;       
 char robotName[16] = "none/con";     
 bool piDataReceived = false;     
+
+unsigned long lastReceiveTime = 0;
+unsigned long lastNoConnectionPrint = 0;
+const unsigned long CONNECTION_TIMEOUT = 1000;
 
 
 void transiver_init()
@@ -36,10 +44,28 @@ void transiver_init()
         Serial.println("RFM69 init FAILED");
         while (1);
     }
+    //radio.writeReg(0x03, 0x0D);
+    //radio.writeReg(0x04, 0x05);
+    uint16_t bitrate = 32000000 / 9600;
+
+    //radio.writeReg(REG_BITRATEMSB, bitrate >> 8);
+    //radio.writeReg(REG_BITRATELSB, bitrate & 0xFF);
+
+
+    //radio.writeReg(REG_FDEVMSB, 0x00);
+    //radio.writeReg(REG_FDEVLSB, 0x52);
+
+
+    //radio.writeReg(REG_RXBW, 0x55);
+
+    // AFC bandwidth
+    //radio.writeReg(REG_AFCBW, 0x8B);
+
 
     radio.setHighPower();
 
     Serial.println("RFM69 init OK");
+    lastReceiveTime = millis();
 }
 
 void readPiSerial()
@@ -147,15 +173,13 @@ void transiver_receive()
         uint8_t button = radio.DATA[2];
 
         handleDataPacket(x, y, button);
+        lastReceiveTime = millis();
     }
-}
 
-
-void printRSSI()
-{
-    if (radio.receiveDone())
-    {
-        Serial.print("RSSI: ");
-        Serial.println(radio.RSSI);
+    if (millis() - lastReceiveTime >= CONNECTION_TIMEOUT) {
+        if (millis() - lastNoConnectionPrint >= 1000) {
+            Serial.println("no connection"); 
+            lastNoConnectionPrint = millis();
+        }
     }
 }

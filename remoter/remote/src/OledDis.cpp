@@ -58,7 +58,7 @@ void Display_draw(char *name, float remoteBattery, uint8_t robotBattery, int8_t 
   display.print("V");
 
   display.print("B:");
-  display.print(robotBattery , 1);
+  display.print(robotBattery / 10.0, 1);
   display.println("V");
 
   display.print("RSSI:");

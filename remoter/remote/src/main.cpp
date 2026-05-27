@@ -20,7 +20,7 @@ void setup() {
   pinMode(PWR_CONTROL, OUTPUT);
   digitalWrite(PWR_CONTROL, HIGH);
 
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
+
   attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), handleButton, FALLING);
 
   Display_init();
@@ -34,7 +34,7 @@ void loop() {
   uint8_t x, y;
   int8_t RSSI = 0;
   uint8_t battery = 0;
-  char robotName[15] = "none";
+  char robotName[15] = "No connection";
 
   readJoystick(&x, &y);
 
@@ -47,8 +47,8 @@ void loop() {
 
 
 
-  sendData(x, y, buttonState, &battery, robotName, &RSSI);
-  Display_draw(robotName, measuredvbat, battery, RSSI);
+  sendData(x, y, buttonState, &battery, robotName, &RSSI); //test outcomment
+  Display_draw(robotName, measuredvbat, battery, RSSI); //test outcomment
 
   delay(100);
 }

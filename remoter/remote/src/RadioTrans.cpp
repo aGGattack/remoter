@@ -1,17 +1,20 @@
 #include "RadioTrans.h"
 #include <SPI.h>
 #include <RFM69.h>
+#include <RFM69registers.h>
 
-#define RFM69_CS    A5
-#define RFM69_RST   A4
-#define RFM69_INT   6
-#define RFM69_DIO2  11
-#define RFM69_DIO3  12
+#define RFM69_CS    0
+#define RFM69_RST   1
+#define RFM69_INT   A4
+#define RFM69_DIO2  A3
+#define RFM69_DIO3  A5
 
 #define NETWORKID   42
 #define NODEID      2
 #define TONODEID    1
 #define FREQUENCY   RF69_433MHZ
+#define LATENCY_PACKET 0x42
+#define PACKET_TEST 0x55
 
 RFM69 radio(RFM69_CS, RFM69_INT);
 
@@ -31,24 +34,37 @@ void transiver_init()
         while (1);
     }
 
+
+    //uint16_t bitrate = 32000000 / 9600;
+
+    //radio.writeReg(REG_BITRATEMSB, bitrate >> 8);
+    //radio.writeReg(REG_BITRATELSB, bitrate & 0xFF);
+
+
+    //radio.writeReg(REG_FDEVMSB, 0x00);
+    //radio.writeReg(REG_FDEVLSB, 0x52);
+
+
+    //radio.writeReg(REG_RXBW, 0x55);
+
+    // AFC bandwidth
+    //radio.writeReg(REG_AFCBW, 0x8B);
+
+
+
     radio.setHighPower();
 
     Serial.println("RFM69 init OK");
 }
 
-bool sendData(uint8_t x,
-              uint8_t y,
-              uint8_t button,
-              uint8_t *battery,
-              char *robotName,
-              int8_t *RSSI)
+bool sendData(uint8_t x, uint8_t y, uint8_t button, uint8_t *battery, char *robotName, int8_t *RSSI)
 {
     uint8_t packet[3];
     packet[0] = x;
     packet[1] = y;
     packet[2] = button;
 
-    if (!radio.sendWithRetry(TONODEID, packet, sizeof(packet), 5, 20))
+    if (!radio.sendWithRetry(TONODEID, packet, sizeof(packet), 1, 50))
     {
         Serial.println("No ACK received");
         return false;
@@ -70,3 +86,5 @@ bool sendData(uint8_t x,
 
     return true;
 }
+
+

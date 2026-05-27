@@ -1,0 +1,1597 @@
+% =============================================================================
+% APPENDIX: Source Code Listings
+% =============================================================================
+% Fully self-contained -- works directly on Overleaf.
+% Drop this file into your project and \input{appendix_code_listings}
+% in your report where you want the appendix to appear.
+%
+% If you already have these packages in your preamble, comment out the
+% \usepackage lines below.
+% =============================================================================
+
+% ---- Packages (uncomment any NOT already in your preamble) ------------------
+% \usepackage{xcolor}
+% \usepackage{listings}
+% \usepackage{caption}
+
+% ---- Listing style -----------------------------------------------------------
+\definecolor{codebg}{rgb}{0.95,0.95,0.97}
+\definecolor{codeframe}{rgb}{0.80,0.80,0.85}
+\definecolor{stringgreen}{rgb}{0.15,0.55,0.15}
+\definecolor{keywordblue}{rgb}{0.10,0.20,0.70}
+\definecolor{commentgray}{rgb}{0.35,0.35,0.35}
+
+\lstdefinestyle{appendix}{
+  language        = C++,
+  basicstyle      = \footnotesize\ttfamily,
+  backgroundcolor = \color{codebg},
+  frame           = single,
+  rulecolor       = \color{codeframe},
+  numbers         = left,
+  numberstyle     = \tiny\color{gray},
+  stepnumber      = 1,
+  numbersep       = 8pt,
+  tabsize         = 2,
+  showspaces      = false,
+  showstringspaces = false,
+  breaklines      = true,
+  breakatwhitespace = true,
+  keywordstyle    = \color{keywordblue}\bfseries,
+  commentstyle    = \color{commentgray}\itshape,
+  stringstyle     = \color{stringgreen},
+  captionpos      = t,
+  xleftmargin     = 2em,
+  framexleftmargin = 1.5em,
+}
+
+\lstdefinestyle{appendix-py}{
+  style           = appendix,
+  language        = Python,
+}
+
+\lstdefinestyle{appendix-ini}{
+  style           = appendix,
+  language        = {[LaTeX]TeX},
+}
+
+% =============================================================================
+\chapter{Source Code Listings}  \label{app:code}
+% =============================================================================
+
+% -----------------------------------------------------------------------------
+\section{Remote Controller Firmware (C++)}
+% -----------------------------------------------------------------------------
+
+The handheld remote controller firmware runs on an Adafruit Feather~M0
+with an RFM69~433\,MHz transceiver, an SSD1306~128$\times$32~OLED display,
+and an analog dual-axis joystick.  PlatformIO is used as the build system.
+
+% ---- main.cpp ---------------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Remote --- main.cpp}, label={lst:remote-main}]
+#include <Arduino.h>
+#include "OledDis.h"
+#include "RadioTrans.h"
+#include "Joystick.h"
+
+#define BUTTON_PIN 10
+#define VBATPIN A7
+#define PWR_CONTROL 5
+
+volatile uint8_t buttonState = 0;
+
+void handleButton() {
+  buttonState = !buttonState;
+}
+
+void setup() {
+  Serial.begin(115200);
+  delay(2000);
+
+  pinMode(PWR_CONTROL, OUTPUT);
+  digitalWrite(PWR_CONTROL, HIGH);
+
+
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), handleButton, FALLING);
+
+  Display_init();
+
+  transiver_init();   
+
+  Serial.println("System ready");
+}
+
+void loop() {
+  uint8_t x, y;
+  int8_t RSSI = 0;
+  uint8_t battery = 0;
+  char robotName[15] = "No connection";
+
+  readJoystick(&x, &y);
+
+
+  // Remote battery mesurements
+  float measuredvbat = analogRead(VBATPIN);
+  measuredvbat *= 2;
+  measuredvbat *= 3.3;
+  measuredvbat /= 1024.0;
+
+
+
+  sendData(x, y, buttonState, &battery, robotName, &RSSI);
+  Display_draw(robotName, measuredvbat, battery, RSSI);
+
+  delay(100);
+}
+\end{lstlisting}
+
+% ---- Joystick.cpp -----------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Remote --- Joystick.cpp}, label={lst:remote-joystick}]
+#include <Arduino.h>
+
+
+void readJoystick(uint8_t *x, uint8_t *y) {
+    *x = -analogRead(A0) >> 2;
+    *y = -analogRead(A1) >> 2;
+}
+\end{lstlisting}
+
+% ---- OledDis.cpp ------------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Remote --- OledDis.cpp}, label={lst:remote-oled}]
+#include <Arduino.h>
+#include "OledDis.h"
+#include <Wire.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 32
+
+Adafruit_SSD1306 display(
+  SCREEN_WIDTH,
+  SCREEN_HEIGHT,
+  &Wire,     
+  -1
+);
+
+void Display_init() {
+  Wire.begin();
+  delay(100);
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println("OLED not found");
+    while (1);
+  }
+  Serial.println("OLED found");
+
+  display.clearDisplay();
+  display.setRotation(2);
+  display.ssd1306_command(SSD1306_DISPLAYON);
+  display.ssd1306_command(SSD1306_NORMALDISPLAY);
+  display.display();
+}
+
+void Display_test() {
+  display.clearDisplay();
+
+  display.drawRect(0, 0, 128, 32, SSD1306_WHITE);
+
+  display.drawLine(0, 0, 127, 31, SSD1306_WHITE);
+
+  display.display();
+}
+
+void Display_clear() {
+  display.clearDisplay();
+  display.display();
+}
+
+void Display_draw(char *name, float remoteBattery, uint8_t robotBattery, int8_t RSSI) {
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+
+  display.print("Name:");
+  display.println(name);
+
+  display.print("R:");
+  display.print(remoteBattery, 1);
+  display.print("V");
+
+  display.print("B:");
+  display.print(robotBattery / 10.0, 1);
+  display.println("V");
+
+  display.print("RSSI:");
+  display.println(RSSI);
+
+  display.display();
+}
+\end{lstlisting}
+
+% ---- RadioTrans.cpp ---------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Remote --- RadioTrans.cpp}, label={lst:remote-radio}]
+#include "RadioTrans.h"
+#include <SPI.h>
+#include <RFM69.h>
+#include <RFM69registers.h>
+
+#define RFM69_CS    0
+#define RFM69_RST   1
+#define RFM69_INT   A4
+#define RFM69_DIO2  A3
+#define RFM69_DIO3  A5
+
+#define NETWORKID   42
+#define NODEID      2
+#define TONODEID    1
+#define FREQUENCY   RF69_433MHZ
+#define LATENCY_PACKET 0x42
+#define PACKET_TEST 0x55
+
+RFM69 radio(RFM69_CS, RFM69_INT);
+
+void transiver_init()
+{
+    pinMode(RFM69_RST, OUTPUT);
+    digitalWrite(RFM69_RST, HIGH);
+    delay(50);
+    digitalWrite(RFM69_RST, LOW);
+    delay(50);
+
+    SPI.begin();
+
+    if (!radio.initialize(FREQUENCY, NODEID, NETWORKID))
+    {
+        Serial.println("RFM69 init FAILED");
+        while (1);
+    }
+
+    radio.setHighPower();
+
+    Serial.println("RFM69 init OK");
+}
+
+bool sendData(uint8_t x, uint8_t y, uint8_t button, uint8_t *battery, char *robotName, int8_t *RSSI)
+{
+    uint8_t packet[3];
+    packet[0] = x;
+    packet[1] = y;
+    packet[2] = button;
+
+    if (!radio.sendWithRetry(TONODEID, packet, sizeof(packet), 1, 50))
+    {
+        Serial.println("No ACK received");
+        return false;
+    }
+
+    *battery = radio.DATA[0];
+
+    for (int i = 0; i < 14; i++)
+    {
+        robotName[i] = (char)radio.DATA[i + 1];
+
+        if (robotName[i] == '\0')
+            break;
+    }
+
+    robotName[14] = '\0';
+
+    *RSSI = radio.RSSI;
+
+    return true;
+}
+\end{lstlisting}
+
+% ---- Joystick.h -------------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Remote --- Joystick.h}, label={lst:remote-joystick-h}]
+#include <Arduino.h>
+
+void readJoystick(uint8_t *x, uint8_t *y);
+\end{lstlisting}
+
+% ---- OledDis.h --------------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Remote --- OledDis.h}, label={lst:remote-oled-h}]
+#pragma once
+#include <Arduino.h>
+
+void Display_init();
+void Display_test();
+void Display_clear();
+void Display_draw(char *name, float remoteBattery, uint8_t robotBattery, int8_t RSSI);
+\end{lstlisting}
+
+% ---- RadioTrans.h -----------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Remote --- RadioTrans.h}, label={lst:remote-radio-h}]
+#ifndef RFM69_H
+#define RFM69_H
+
+#include <Arduino.h>
+
+void transiver_init();
+
+bool sendData(uint8_t x, uint8_t y, uint8_t button, uint8_t *battery, char *robotName, int8_t *RSSI);
+
+
+#endif
+\end{lstlisting}
+
+% ---- platformio.ini ---------------------------------------------------------
+\begin{lstlisting}[style=appendix-ini, caption={Remote --- platformio.ini}, label={lst:remote-pio}]
+[env:adafruit_feather_m0]
+platform = atmelsam
+board = adafruit_feather_m0
+framework = arduino
+monitor_speed = 115200
+build_flags = -D USB_SERIAL
+lib_deps = 
+	adafruit/Adafruit SSD1306@^2.5.16
+	lowpowerlab/RFM69@^1.6.0
+	lowpowerlab/SPIFlash@^101.1.3
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
+\section{Robot-Side Firmware (C++)}
+% -----------------------------------------------------------------------------
+
+The robot-side firmware runs on a second Adafruit Feather~M0.  It receives
+joystick data over the RFM69 link, reads battery voltage and a human-readable
+name from a Raspberry Pi over the serial port, and echoes these back to the
+remote inside the radio's ACK payload.
+
+% ---- Robot main.cpp ---------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Robot --- main.cpp}, label={lst:robot-main}]
+#include <Arduino.h>
+#include <SPI.h>
+#include <RFM69.h>
+#include "RemoteTransiver.h"
+
+void setup() {
+  Serial.begin(115200);
+  while (!Serial) delay(10);
+
+  transiver_init();
+}
+
+void loop() {
+  transiver_receive();
+}
+\end{lstlisting}
+
+% ---- RemoteTransiver.cpp ----------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Robot --- RemoteTransiver.cpp}, label={lst:robot-trans}]
+#include <SPI.h>
+#include <RFM69.h>
+#include "RemoteTransiver.h"
+#include <RFM69registers.h>
+
+#define RFM69_CS   A5
+#define RFM69_INT  6
+#define RFM69_RST  A4
+#define ESTOP      A3
+#define LED_PIN    13
+
+
+#define NETWORKID  42
+#define NODEID     1
+#define TONODEID   2
+#define FREQUENCY  RF69_433MHZ
+#define LATENCY_PACKET 0x42
+#define PACKET_TEST 0x55
+
+RFM69 radio(RFM69_CS, RFM69_INT);
+
+float batteryVoltage = 0;       
+char robotName[16] = "none/con";     
+bool piDataReceived = false;     
+
+unsigned long lastReceiveTime = 0;
+unsigned long lastNoConnectionPrint = 0;
+const unsigned long CONNECTION_TIMEOUT = 1000;
+
+
+void transiver_init()
+{
+    pinMode(LED_PIN, OUTPUT);
+    pinMode(RFM69_RST, OUTPUT);
+    digitalWrite(RFM69_RST, HIGH);
+    delay(100);
+    digitalWrite(RFM69_RST, LOW);
+    delay(100);
+
+    pinMode(ESTOP, OUTPUT);
+
+    if (!radio.initialize(FREQUENCY, NODEID, NETWORKID))
+    {
+        Serial.println("RFM69 init FAILED");
+        while (1);
+    }
+
+    radio.setHighPower();
+
+    Serial.println("RFM69 init OK");
+    lastReceiveTime = millis();
+}
+
+void readPiSerial()
+{
+    static char line[64];
+    static uint8_t idx = 0;
+
+    while (Serial.available())
+    {
+        char c = Serial.read();
+        if (c == '\r') continue;
+
+        if (c == '\n')
+        {
+            line[idx] = '\0';
+            idx = 0;
+
+            // Find "name:" 
+            char* namePtr = strstr(line, "name:");
+            char* batPtr  = strstr(line, ",bat:");
+
+            if (namePtr && batPtr)
+            {
+                namePtr += 5; // skip "name:"
+
+                // Copy name up to the comma
+                uint8_t i = 0;
+                while (namePtr[i] != ',' && namePtr[i] != '\0' && i < 15)
+                {
+                    robotName[i] = namePtr[i];
+                    i++;
+                }
+                robotName[i] = '\0';
+
+                // Parse float manually
+                batPtr += 5; // skip ",bat:"
+                batteryVoltage = atof(batPtr);
+                piDataReceived = true;
+
+
+            }
+
+        }
+        else
+        {
+            if (idx < sizeof(line) - 1)
+                line[idx++] = c;
+            else
+                idx = 0;
+        }
+    }
+}
+
+
+void handleDataPacket(uint8_t x, uint8_t y, uint8_t button)
+{
+
+    Serial.print("x:");
+    Serial.print(x);
+    Serial.print(", y:");
+    Serial.print(y);
+    Serial.print(", btn:");
+    Serial.println(button);
+
+    if (button == 1)
+        digitalWrite(ESTOP, HIGH);
+    else
+        digitalWrite(ESTOP, LOW);
+}
+
+
+void transiver_receive()
+{
+
+    readPiSerial();
+
+    if (radio.receiveDone())
+    {
+        if (radio.ACKRequested())
+        {
+
+            uint8_t ackPayload[16];
+
+            // Battery voltage, e.g. 24.3V -> 243
+            ackPayload[0] = (uint8_t)(batteryVoltage * 10.0);
+
+            // Copy robot name into remaining bytes
+            uint8_t i = 0;
+            for (; i < 14 && robotName[i] != '\0'; i++)
+            {
+                ackPayload[i + 1] = robotName[i];
+            }
+
+            // Zero-fill rest
+            for (; i < 14; i++)
+            {
+                ackPayload[i + 1] = 0;
+            }
+
+            radio.sendACK(ackPayload, 15);
+        }
+
+        uint8_t x      = radio.DATA[0];
+        uint8_t y      = radio.DATA[1];
+        uint8_t button = radio.DATA[2];
+
+        handleDataPacket(x, y, button);
+        lastReceiveTime = millis();
+    }
+
+    if (millis() - lastReceiveTime >= CONNECTION_TIMEOUT) {
+        if (millis() - lastNoConnectionPrint >= 1000) {
+            Serial.println("no connection"); 
+            lastNoConnectionPrint = millis();
+        }
+    }
+}
+\end{lstlisting}
+
+% ---- RemoteTransiver.h ------------------------------------------------------
+\begin{lstlisting}[style=appendix, caption={Robot --- RemoteTransiver.h}, label={lst:robot-trans-h}]
+#ifndef RFM69_H
+#define RFM69_H
+
+#include <Arduino.h>
+
+void transiver_init();
+void transiver_receive();
+void readPiSerial();
+
+#endif
+\end{lstlisting}
+
+% ---- Robot platformio.ini ---------------------------------------------------
+\begin{lstlisting}[style=appendix-ini, caption={Robot --- platformio.ini}, label={lst:robot-pio}]
+[env:adafruit_feather_m0]
+platform = atmelsam
+board = adafruit_feather_m0
+framework = arduino
+monitor_speed = 115200
+build_flags = -D USB_SERIAL
+lib_deps = 
+	adafruit/Adafruit SSD1306@^2.5.16
+	lowpowerlab/RFM69@^1.6.0
+	lowpowerlab/SPIFlash@^101.1.3
+\end{lstlisting}
+
+% -----------------------------------------------------------------------------
+\section{Test and Measurement Scripts (Python)}
+% -----------------------------------------------------------------------------
+
+The following Python scripts were used during the project to characterise
+the radio link's latency, packet-loss, and signal-strength (RSSI)
+performance.  All measurement scripts communicate with the robot-side
+Feather~M0 over a serial port and use \texttt{matplotlib} to produce plots.
+
+% ---- test_feather.py --------------------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={Feather serial-communication test}, label={lst:test-feather}]
+#!/usr/bin/env python3
+"""
+Feather M0 Communication Test Script
+============================
+Usage: python test_feather.py
+
+This script tests serial communication with the Feather M0 (RobotSide).
+
+Setup:
+  - Windows: Uses COM8 (change below if different)
+  - Linux: Uses /dev/ttyACM1 (change below if different)
+
+Run:
+  python test_feather.py
+
+What it does:
+  1. Sends "name:TESTBOT,bat:12.34\n" to Feather
+  2. Waits for response
+  3. Reports what was received
+
+Output examples:
+  - "Response: OK" = Feather received and responded
+  - "No response" = Feather not receiving data
+"""
+
+import serial
+import time
+import sys
+
+WINDOWS_PORT = 'COM8'
+LINUX_PORT = '/dev/ttyACM1'
+
+if sys.platform.startswith('win'):
+    SERIAL_PORT = WINDOWS_PORT
+elif sys.platform.startswith('linux'):
+    SERIAL_PORT = LINUX_PORT
+else:
+    SERIAL_PORT = '/dev/ttyUSB0'  # Mac
+
+BAUD_RATE = 115200
+TIMEOUT = 2
+
+def test_feather():
+    print("=== Feather M0 Communication Test ===")
+    print(f"Platform: {sys.platform}")
+    print(f"Port: {SERIAL_PORT}")
+    print(f"Baud: {BAUD_RATE}")
+    print("-" * 40)
+
+    try:
+        print("Opening serial port...")
+        ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=TIMEOUT)
+        time.sleep(2)
+        print("Port opened!")
+
+        print("\nSending test data...")
+        test_msg = "name:TESTBOT,bat:12.34\n"
+        ser.write(test_msg.encode())
+        print(f"Sent: {test_msg.strip()}")
+
+        print("\nReading response...")
+        received_any = False
+        
+        for i in range(3):
+            time.sleep(0.5)
+            if ser.in_waiting > 0:
+                data = ser.read(ser.in_waiting)
+                print(f"Response {i+1}: {data.decode('utf-8', errors='replace').strip()}")
+                received_any = True
+            else:
+                print(f"Attempt {i+1}: No data available")
+
+        if not received_any:
+            print("\nNo response received from Feather!")
+            print("This means Feather is not responding to the serial data.")
+
+        ser.close()
+        print("\n=== Test Complete ===")
+
+    except serial.SerialException as e:
+        print(f"\nERROR: {e}")
+        print("\nTroubleshooting:")
+        print("  - Make sure Feather is connected")
+        print("  - Check correct COM port (Windows: COMx, Linux: /dev/ttyACMx)")
+        print("  - Close other programs using the port")
+        print("  - Try a different USB port")
+
+if __name__ == "__main__":
+    test_feather()
+\end{lstlisting}
+
+% ---- BitRateLatencyTest.py --------------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={Latency vs.\ bitrate measurement}, label={lst:bitrate-latency}]
+import serial
+import time
+import matplotlib.pyplot as plt
+import csv
+import re
+from datetime import datetime
+
+SERIAL_PORT = "COM8"
+BAUD_RATE = 115200
+
+BITRATE_LABEL = "1.2 kbps"   # Change this manually for each test
+MEASURE_TIME = 10
+
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+csv_filename = f"latency_{BITRATE_LABEL.replace(' ', '_')}_{timestamp}.csv"
+plot_filename = f"latency_{BITRATE_LABEL.replace(' ', '_')}_{timestamp}.png"
+
+ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
+time.sleep(2)
+
+rtt_values = []
+oneway_values = []
+
+pattern = r"RTT:\s+(\d+)\s+us\s+\|\s+One-way latency:\s+([\d.]+)\s+ms"
+
+print(f"\nRecording latency data for {BITRATE_LABEL}...")
+
+start = time.time()
+
+while time.time() - start < MEASURE_TIME:
+    line = ser.readline().decode(errors='ignore').strip()
+    match = re.search(pattern, line)
+
+    if match:
+        rtt = int(match.group(1))
+        latency = float(match.group(2))
+        rtt_values.append(rtt)
+        oneway_values.append(latency)
+        print(f"RTT: {rtt} us | Latency: {latency} ms")
+
+ser.close()
+
+print(f"\nCollected {len(rtt_values)} samples")
+
+with open(csv_filename, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Sample", "Bitrate", "RTT_us", "OneWayLatency_ms"])
+    for i in range(len(rtt_values)):
+        writer.writerow([i + 1, BITRATE_LABEL, rtt_values[i], oneway_values[i]])
+
+print(f"CSV saved as: {csv_filename}")
+
+avg_latency = sum(oneway_values) / len(oneway_values)
+
+samples = list(range(1, len(oneway_values) + 1))
+
+plt.figure(figsize=(8,5))
+plt.plot(samples, oneway_values, marker='o', label="One-way Latency")
+plt.axhline(avg_latency, linestyle='--', label=f"Average = {avg_latency:.3f} ms")
+plt.xlabel("Sample Number")
+plt.ylabel("Latency (ms)")
+plt.title(f"Latency Test - {BITRATE_LABEL}")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.savefig(plot_filename, dpi=300)
+print(f"Plot saved as: {plot_filename}")
+plt.show()
+\end{lstlisting}
+
+% ---- PackageSizeLatencyTest.py ----------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={Latency vs.\ packet-size measurement}, label={lst:pkt-size-latency}]
+import serial
+import time
+import matplotlib.pyplot as plt
+import csv
+import re
+from datetime import datetime
+
+SERIAL_PORT = "COM8"
+BAUD_RATE = 115200
+
+PACKET_SIZE = 5     # Change for each test
+BIT_RATE = 115.2
+MEASURE_TIME = 10
+
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+csv_filename = f"packet_size_{PACKET_SIZE}B_{BIT_RATE}kb{timestamp}.csv"
+plot_filename = f"packet_size_{PACKET_SIZE}B_{BIT_RATE}kb{timestamp}.png"
+
+ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
+time.sleep(2)
+
+rtt_values = []
+latency_values = []
+
+pattern = r"Size:\s+(\d+)\s+bytes\s+\|\s+RTT:\s+(\d+)\s+us\s+\|\s+One-way latency:\s+([\d.]+)\s+ms"
+
+print(f"\nRecording latency data for packet size = {PACKET_SIZE} bytes")
+
+start = time.time()
+
+while time.time() - start < MEASURE_TIME:
+    line = ser.readline().decode(errors='ignore').strip()
+    match = re.search(pattern, line)
+
+    if match:
+        size = int(match.group(1))
+        rtt = int(match.group(2))
+        latency = float(match.group(3))
+        rtt_values.append(rtt)
+        latency_values.append(latency)
+        print(f"Size: {size} B | RTT: {rtt} us | Latency: {latency} ms")
+
+ser.close()
+
+print(f"\nCollected {len(latency_values)} samples")
+
+with open(csv_filename, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Sample", "PacketSize_Bytes", "RTT_us", "OneWayLatency_ms"])
+    for i in range(len(latency_values)):
+        writer.writerow([i + 1, PACKET_SIZE, rtt_values[i], latency_values[i]])
+
+print(f"CSV saved as: {csv_filename}")
+
+avg_latency = sum(latency_values) / len(latency_values)
+
+samples = list(range(1, len(latency_values) + 1))
+
+plt.figure(figsize=(8,5))
+plt.plot(samples, latency_values, marker='o', label="One-way Latency")
+plt.axhline(avg_latency, linestyle='--', label=f"Average = {avg_latency:.3f} ms")
+plt.xlabel("Sample Number")
+plt.ylabel("Latency (ms)")
+plt.title(f"Latency vs Time - Packet Size {PACKET_SIZE} Bytes")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.savefig(plot_filename, dpi=300)
+print(f"Plot saved as: {plot_filename}")
+plt.show()
+\end{lstlisting}
+
+% ---- packagelossTest.py -----------------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={Packet loss vs.\ distance}, label={lst:packet-loss}]
+import serial
+import time
+import matplotlib.pyplot as plt
+import csv
+from datetime import datetime
+
+SERIAL_PORT = "COM8"
+BAUD_RATE = 115200
+
+DISTANCES = list([20, 40, 50, 70])
+EXPECTED_PACKETS = 100
+
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+csv_filename = f"packet_loss_test_{timestamp}.csv"
+plot_filename = f"packet_loss_plot_{timestamp}.png"
+
+ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
+time.sleep(2)
+
+results = {}
+
+for dist in DISTANCES:
+    print(f"\nMove robot to {dist} meters")
+    input("Press ENTER when ready...")
+    print("Waiting for packets...")
+
+    received_packets = set()
+    start_time = time.time()
+
+    while time.time() - start_time < 10:
+        line = ser.readline().decode(errors='ignore').strip()
+
+        if "Received packet:" in line:
+            try:
+                packet_num = int(line.split(":")[1])
+                received_packets.add(packet_num)
+                print(f"{dist}m -> Packet {packet_num}")
+            except:
+                pass
+
+    received_count = len(received_packets)
+    lost_count = EXPECTED_PACKETS - received_count
+    loss_percent = (lost_count / EXPECTED_PACKETS) * 100
+
+    results[dist] = {
+        "received": received_count,
+        "lost": lost_count,
+        "loss_percent": loss_percent
+    }
+
+    print("\n========== RESULT ==========")
+    print(f"Distance: {dist} m")
+    print(f"Received: {received_count}")
+    print(f"Lost: {lost_count}")
+    print(f"Packet Loss: {loss_percent:.1f}%")
+    print("============================")
+
+ser.close()
+
+with open(csv_filename, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Distance_m", "Received_Packets", "Lost_Packets", "Packet_Loss_Percent"])
+    for dist in DISTANCES:
+        writer.writerow([dist, results[dist]["received"], results[dist]["lost"], results[dist]["loss_percent"]])
+
+print(f"\nCSV saved as: {csv_filename}")
+
+distances = [dist for dist in DISTANCES]
+losses = [results[dist]["loss_percent"] for dist in DISTANCES]
+
+plt.figure(figsize=(8, 5))
+plt.plot(distances, losses, marker='o')
+plt.xlabel("Distance (m)")
+plt.ylabel("Packet Loss (%)")
+plt.title("Packet Loss vs Distance")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig(plot_filename, dpi=300)
+print(f"Plot saved as: {plot_filename}")
+plt.show()
+\end{lstlisting}
+
+% ---- OrrientationsTest.py ---------------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={RSSI vs.\ antenna orientation}, label={lst:orientation}]
+import serial
+import time
+import matplotlib.pyplot as plt
+import csv
+from datetime import datetime
+
+SERIAL_PORT = "COM8"
+BAUD_RATE = 115200
+
+ORIENTATIONS = ["Front", "Back", "Left", "Right"]
+MEASURE_TIME = 10
+ANTENNA = "Horizontal_16.5cm"
+
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+csv_filename = f"rssi_orientation_data_{ANTENNA}_{timestamp}.csv"
+plot_filename = f"rssi_orientation_plot_{ANTENNA}_{timestamp}.png"
+
+ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
+time.sleep(2)
+
+results = {}
+
+def parse_line(line):
+    try:
+        parts = line.split(",")
+        x = int(parts[0].split(":")[1])
+        rssi = int(parts[1].split(":")[1])
+        return x, rssi
+    except:
+        return None, None
+
+for orientation in ORIENTATIONS:
+    print(f"\nRotate robot to: {orientation}")
+    print("Push joystick to start recording...")
+
+    while True:
+        line = ser.readline().decode().strip()
+        x, rssi = parse_line(line)
+        if x is not None and x > 240:
+            print(f"Recording {orientation} orientation...")
+            break
+
+    rssi_values = []
+    start = time.time()
+
+    while time.time() - start < MEASURE_TIME:
+        line = ser.readline().decode().strip()
+        x, rssi = parse_line(line)
+        if rssi is not None:
+            rssi_values.append(rssi)
+
+    results[orientation] = rssi_values
+    print(f"Collected {len(rssi_values)} samples")
+
+ser.close()
+
+with open(csv_filename, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Orientation", "Sample_Number", "RSSI_dBm"])
+    for orientation in ORIENTATIONS:
+        for i, rssi in enumerate(results[orientation]):
+            writer.writerow([orientation, i + 1, rssi])
+
+print(f"\nCSV data saved as: {csv_filename}")
+
+orientations = []
+means = []
+mins = []
+maxs = []
+
+for orientation in ORIENTATIONS:
+    vals = results[orientation]
+    if len(vals) == 0:
+        continue
+    orientations.append(orientation)
+    means.append(sum(vals) / len(vals))
+    mins.append(min(vals))
+    maxs.append(max(vals))
+
+plt.figure(figsize=(8, 5))
+plt.plot(orientations, means, marker='o', label="Average RSSI")
+plt.fill_between(range(len(orientations)), mins, maxs, alpha=0.2, label="Variation")
+plt.xlabel("Orientation")
+plt.ylabel("RSSI (dBm)")
+plt.title("RSSI vs Orientation")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.savefig(plot_filename, dpi=300)
+print(f"Plot saved as: {plot_filename}")
+plt.show()
+\end{lstlisting}
+
+% ---- RSSItest.py ------------------------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={RSSI vs.\ distance and antenna length}, label={lst:rssi-test}]
+import serial
+import time
+import matplotlib.pyplot as plt
+import csv
+from datetime import datetime
+
+SERIAL_PORT = "COM8"
+BAUD_RATE = 115200
+
+DISTANCES = [1, 5, 10, 20, 40]
+MEASURE_TIME = 10
+ANTENNA = "Horizontal_16.5cm"
+
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+csv_filename = f"rssi_data_{ANTENNA}_{timestamp}.csv"
+plot_filename = f"rssi_plot_{ANTENNA}_{timestamp}.png"
+
+ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
+time.sleep(2)
+
+results = {}
+
+def parse_line(line):
+    try:
+        parts = line.split(",")
+        x = int(parts[0].split(":")[1])
+        rssi = int(parts[1].split(":")[1])
+        return x, rssi
+    except:
+        return None, None
+
+for dist in DISTANCES:
+    print(f"\nMove to {dist} meters. Push joystick to start...")
+
+    while True:
+        line = ser.readline().decode().strip()
+        x, rssi = parse_line(line)
+        if x is not None and x > 240:
+            print(f"Recording at {dist} m...")
+            break
+
+    rssi_values = []
+    start = time.time()
+
+    while time.time() - start < MEASURE_TIME:
+        line = ser.readline().decode().strip()
+        x, rssi = parse_line(line)
+        if rssi is not None:
+            rssi_values.append(rssi)
+
+    results[dist] = rssi_values
+    print(f"Collected {len(rssi_values)} samples")
+
+ser.close()
+
+with open(csv_filename, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Distance_m", "Sample_Number", "RSSI_dBm"])
+    for dist in DISTANCES:
+        for i, rssi in enumerate(results[dist]):
+            writer.writerow([dist, i + 1, rssi])
+
+print(f"\nCSV data saved as: {csv_filename}")
+
+distances = []
+means = []
+mins = []
+maxs = []
+
+for d in DISTANCES:
+    vals = results[d]
+    if len(vals) == 0:
+        continue
+    distances.append(d)
+    means.append(sum(vals) / len(vals))
+    mins.append(min(vals))
+    maxs.append(max(vals))
+
+plt.figure()
+plt.plot(distances, means, marker='o', label="Average RSSI")
+plt.fill_between(distances, mins, maxs, alpha=0.2, label="Variation")
+plt.xlabel("Distance (m)")
+plt.ylabel("RSSI (dBm)")
+plt.title("RSSI vs Distance")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.savefig(plot_filename, dpi=300)
+print(f"Plot saved as: {plot_filename}")
+plt.show()
+\end{lstlisting}
+
+% ---- plot_rssi_antenna.py ---------------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={Multi-file RSSI plotting (antenna comparison)}, label={lst:rssi-plot}]
+"""
+RSSI vs Distance -- comparison across antenna lengths.
+
+Filename format:  rssi_data_*_<LENGTH>cm_<timestamp>.csv
+Columns: Distance_m, Sample_Number, RSSI_dBm
+"""
+
+import os
+import re
+import glob
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from pathlib import Path
+from collections import defaultdict
+
+DATA_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = DATA_DIR
+
+LENGTH_ORDER = [16.5, 16.7, 16.9, 17.1, 17.3, 17.5, 17.8]
+
+PALETTE = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728",
+           "#9467bd", "#8c564b", "#e377c2"]
+
+def parse_length(path: str):
+    m = re.search(r'_([\d]+[_.][\d]+)cm[_.]', Path(path).name)
+    if m:
+        return float(m.group(1).replace("_", "."))
+    m2 = re.search(r'_(\d+)cm[_.]', Path(path).name)
+    if m2:
+        return float(m2.group(1))
+    return None
+
+def load_all(data_dir: str) -> pd.DataFrame:
+    pattern = os.path.join(data_dir, "rssi_data_*.csv")
+    files = glob.glob(pattern)
+    if not files:
+        raise FileNotFoundError(f"No files matching 'rssi_data_*.csv' in {data_dir}")
+
+    by_length = defaultdict(list)
+    for f in sorted(files):
+        length = parse_length(f)
+        if length is None:
+            continue
+        df = pd.read_csv(f)
+        df.columns = [c.strip() for c in df.columns]
+        df = df.rename(columns={c: c.lower().replace(" ", "_") for c in df.columns})
+        df = df.rename(columns={"distance_m": "distance", "rssi_dbm": "rssi"})
+        df["length_cm"] = length
+        by_length[length].append(df)
+
+    frames = []
+    for length, dfs in sorted(by_length.items()):
+        frames.append(pd.concat(dfs, ignore_index=True))
+    return pd.concat(frames, ignore_index=True)
+
+def build_stats(df: pd.DataFrame) -> pd.DataFrame:
+    g = df.groupby(["length_cm", "distance"])["rssi"]
+    stats = pd.DataFrame({
+        "mean": g.mean(), "median": g.median(), "std": g.std(),
+        "p5": g.quantile(0.05), "p95": g.quantile(0.95), "n": g.count(),
+    }).reset_index()
+    return stats
+
+def plot_rssi_vs_distance(stats: pd.DataFrame, out_dir: str):
+    lengths = sorted(stats["length_cm"].unique(),
+                     key=lambda x: LENGTH_ORDER.index(x) if x in LENGTH_ORDER else x)
+    fig, ax = plt.subplots(figsize=(9, 6))
+    for i, length in enumerate(lengths):
+        sub = stats[stats["length_cm"] == length].sort_values("distance")
+        color = PALETTE[i % len(PALETTE)]
+        marker = ["o", "s", "^", "D", "v", "P", "X"][i % 7]
+        ax.plot(sub["distance"], sub["median"],
+                color=color, marker=marker, linewidth=2, markersize=7,
+                label=f"{length} cm", zorder=3)
+        ax.fill_between(sub["distance"], sub["p5"], sub["p95"],
+                        alpha=0.08, color=color)
+        ax.fill_between(sub["distance"],
+                        sub["median"] - sub["std"], sub["median"] + sub["std"],
+                        alpha=0.15, color=color)
+    ax.set_xscale("log")
+    ax.set_xlabel("Distance (m)", fontsize=11)
+    ax.set_ylabel("RSSI (dBm)", fontsize=11)
+    ax.set_title("RSSI vs Distance -- Antenna Length Comparison", fontsize=12)
+    distances = sorted(stats["distance"].unique())
+    ax.set_xticks(distances)
+    ax.set_xticklabels([f"{d} m" for d in distances])
+    ax.xaxis.set_minor_formatter(ticker.NullFormatter())
+    ax.legend(title="Antenna length", loc="lower left")
+    ax.grid(True, which="both", linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_rssi_vs_distance.png"), dpi=150)
+    plt.close(fig)
+
+def plot_bar_per_distance(stats: pd.DataFrame, out_dir: str):
+    lengths = sorted(stats["length_cm"].unique(),
+                     key=lambda x: LENGTH_ORDER.index(x) if x in LENGTH_ORDER else x)
+    distances = sorted(stats["distance"].unique())
+    n_len = len(lengths)
+    x = np.arange(len(distances))
+    width = 0.7 / n_len
+    offsets = np.linspace(-(n_len - 1) / 2, (n_len - 1) / 2, n_len) * width
+    fig, ax = plt.subplots(figsize=(11, 6))
+    for i, length in enumerate(lengths):
+        sub = stats[stats["length_cm"] == length].sort_values("distance")
+        vals = [sub[sub["distance"] == d]["median"].values[0]
+                if len(sub[sub["distance"] == d]) else np.nan for d in distances]
+        errs = [sub[sub["distance"] == d]["std"].values[0]
+                if len(sub[sub["distance"] == d]) else 0 for d in distances]
+        ax.bar(x + offsets[i], vals, width, yerr=errs,
+               color=PALETTE[i], alpha=0.8, label=f"{length} cm", capsize=3)
+    ax.set_xticks(x)
+    ax.set_xticklabels([f"{d} m" for d in distances])
+    ax.set_ylabel("Median RSSI (dBm)")
+    ax.set_title("Median RSSI per Distance -- Antenna Length Comparison")
+    ax.legend(loc="lower left")
+    ax.grid(axis="y", linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_rssi_bar_per_distance.png"), dpi=150)
+    plt.close(fig)
+
+def plot_boxplot_far(df: pd.DataFrame, out_dir: str):
+    max_dist = df["distance"].max()
+    sub = df[df["distance"] == max_dist]
+    lengths = sorted(sub["length_cm"].unique(),
+                     key=lambda x: LENGTH_ORDER.index(x) if x in LENGTH_ORDER else x)
+    groups = [sub[sub["length_cm"] == l]["rssi"].values for l in lengths]
+    labels = [f"{l} cm" for l in lengths]
+    colors = PALETTE[:len(lengths)]
+    fig, ax = plt.subplots(figsize=(9, 5))
+    bp = ax.boxplot(groups, tick_labels=labels, patch_artist=True,
+                    medianprops={"color": "black", "linewidth": 2})
+    for patch, color in zip(bp["boxes"], colors):
+        patch.set_facecolor(color)
+        patch.set_alpha(0.75)
+    ax.set_title(f"RSSI Distribution at {max_dist} m")
+    ax.grid(axis="y", linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, f"plot_rssi_boxplot_{max_dist}m.png"), dpi=150)
+    plt.close(fig)
+
+if __name__ == "__main__":
+    df = load_all(DATA_DIR)
+    stats = build_stats(df)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    plot_rssi_vs_distance(stats, OUTPUT_DIR)
+    plot_bar_per_distance(stats, OUTPUT_DIR)
+    plot_boxplot_far(df, OUTPUT_DIR)
+\end{lstlisting}
+
+% ---- plot_latency_vs_bitrate.py ---------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={Latency vs.\ bitrate plotting}, label={lst:latency-bitrate-plot}]
+"""
+Latency vs Bitrate -- fixed packet size (5 B).
+
+Loads all CSVs matching: latency_*kbps*.csv
+Columns: Sample, Bitrate (string), RTT_us, OneWayLatency_ms
+"""
+
+import os, re, glob
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from pathlib import Path
+
+DATA_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = DATA_DIR
+PACKET_SIZE_B = 5
+BITRATE_ORDER = [1.2, 9.6, 57.6, 115.2, 250.0]
+
+def load_all_csvs(data_dir: str) -> pd.DataFrame:
+    pattern = os.path.join(data_dir, "latency_*kbps*.csv")
+    files = glob.glob(pattern)
+    if not files:
+        raise FileNotFoundError(f"No CSVs matching 'latency_*kbps*.csv' in {data_dir}")
+    frames = []
+    for f in sorted(files):
+        df = pd.read_csv(f)
+        df.columns = [c.strip() for c in df.columns]
+        col_map = {c: ["sample", "bitrate_str", "RTT_us", "OWL_ms"][i]
+                   for i, c in enumerate(df.columns)}
+        df = df.rename(columns=col_map)
+        frames.append(df)
+    combined = pd.concat(frames, ignore_index=True)
+    combined["bitrate_kbps"] = combined["bitrate_str"].str.extract(r"([\d.]+)").astype(float)
+    return combined
+
+def remove_outliers(df: pd.DataFrame) -> pd.DataFrame:
+    clean = []
+    for br, g in df.groupby("bitrate_kbps"):
+        med = g["RTT_us"].median()
+        clean.append(g[g["RTT_us"] < 5 * med])
+    return pd.concat(clean, ignore_index=True)
+
+def build_stats(df: pd.DataFrame) -> pd.DataFrame:
+    g = df.groupby("bitrate_kbps")["RTT_us"]
+    stats = pd.DataFrame({
+        "n": g.count(), "mean_ms": g.mean()/1000, "median_ms": g.median()/1000,
+        "std_ms": g.std()/1000, "p5_ms": g.quantile(0.05)/1000,
+        "p95_ms": g.quantile(0.95)/1000,
+    }).reset_index()
+    order = {b: i for i, b in enumerate(BITRATE_ORDER)}
+    stats["_order"] = stats["bitrate_kbps"].map(order).fillna(999)
+    return stats.sort_values("_order").drop(columns="_order").reset_index(drop=True)
+
+def plot_rtt_line(stats: pd.DataFrame, out_dir: str):
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.plot(stats["bitrate_kbps"], stats["median_ms"],
+            color="#2196F3", marker="o", linewidth=2, markersize=7, zorder=3,
+            label="Median RTT")
+    ax.fill_between(stats["bitrate_kbps"], stats["p5_ms"], stats["p95_ms"],
+                    alpha=0.15, color="#2196F3", label="5th-95th percentile")
+    ax.fill_between(stats["bitrate_kbps"],
+                    stats["median_ms"] - stats["std_ms"],
+                    stats["median_ms"] + stats["std_ms"],
+                    alpha=0.25, color="#2196F3", label=r"$\pm1\sigma$")
+    for _, row in stats.iterrows():
+        ax.annotate(f"{row['median_ms']:.1f} ms",
+                    xy=(row["bitrate_kbps"], row["median_ms"]),
+                    xytext=(0, 10), textcoords="offset points", ha="center", fontsize=8)
+    ax.set_xscale("log")
+    ax.set_xlabel("Bitrate (kbps)")
+    ax.set_ylabel("RTT (ms)")
+    ax.set_title(f"Round-Trip Time vs Bitrate  |  Packet size = {PACKET_SIZE_B} B")
+    ax.set_xticks(stats["bitrate_kbps"])
+    ax.set_xticklabels([f"{b:g}" for b in stats["bitrate_kbps"]])
+    ax.xaxis.set_minor_formatter(ticker.NullFormatter())
+    ax.legend()
+    ax.grid(True, which="both", linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_rtt_vs_bitrate.png"), dpi=150)
+    plt.close(fig)
+
+def plot_owl_line(df: pd.DataFrame, out_dir: str):
+    owl = df.groupby("bitrate_kbps")["OWL_ms"]
+    owl_stats = pd.DataFrame({
+        "median_ms": owl.median(), "std_ms": owl.std(),
+        "p5_ms": owl.quantile(0.05), "p95_ms": owl.quantile(0.95),
+    }).reset_index()
+    order = {b: i for i, b in enumerate(BITRATE_ORDER)}
+    owl_stats["_order"] = owl_stats["bitrate_kbps"].map(order).fillna(999)
+    owl_stats = owl_stats.sort_values("_order").drop(columns="_order").reset_index(drop=True)
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.plot(owl_stats["bitrate_kbps"], owl_stats["median_ms"],
+            color="#4CAF50", marker="s", linewidth=2, markersize=7, zorder=3,
+            label="Median one-way latency")
+    ax.fill_between(owl_stats["bitrate_kbps"],
+                    owl_stats["median_ms"] - owl_stats["std_ms"],
+                    owl_stats["median_ms"] + owl_stats["std_ms"],
+                    alpha=0.25, color="#4CAF50", label=r"$\pm1\sigma$")
+    for _, row in owl_stats.iterrows():
+        ax.annotate(f"{row['median_ms']:.1f} ms",
+                    xy=(row["bitrate_kbps"], row["median_ms"]),
+                    xytext=(0, 10), textcoords="offset points", ha="center", fontsize=8)
+    ax.set_xscale("log")
+    ax.set_xlabel("Bitrate (kbps)")
+    ax.set_ylabel("One-Way Latency (ms)")
+    ax.set_title(f"One-Way Latency vs Bitrate  |  Packet size = {PACKET_SIZE_B} B")
+    ax.set_xticks(owl_stats["bitrate_kbps"])
+    ax.set_xticklabels([f"{b:g}" for b in owl_stats["bitrate_kbps"]])
+    ax.xaxis.set_minor_formatter(ticker.NullFormatter())
+    ax.legend()
+    ax.grid(True, which="both", linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_owl_vs_bitrate.png"), dpi=150)
+    plt.close(fig)
+
+def plot_boxplot(df: pd.DataFrame, out_dir: str):
+    stats = build_stats(df)
+    bitrates = stats["bitrate_kbps"].tolist()
+    groups = [df[df["bitrate_kbps"] == br]["RTT_us"].values / 1000 for br in bitrates]
+    labels = [f"{b:g} kbps" for b in bitrates]
+    fig, ax = plt.subplots(figsize=(9, 5))
+    bp = ax.boxplot(groups, tick_labels=labels, patch_artist=True,
+                    medianprops={"color": "black", "linewidth": 2})
+    colors = ["#2196F3", "#4CAF50", "#FF9800", "#9C27B0", "#F44336"]
+    for patch, color in zip(bp["boxes"], colors):
+        patch.set_facecolor(color); patch.set_alpha(0.7)
+    ax.set_title(f"RTT Distribution per Bitrate  |  Packet size = {PACKET_SIZE_B} B")
+    ax.grid(axis="y", linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_boxplot_bitrate.png"), dpi=150)
+    plt.close(fig)
+
+def plot_bar_comparison(df: pd.DataFrame, out_dir: str):
+    stats = build_stats(df)
+    bitrates = stats["bitrate_kbps"].tolist()
+    x = np.arange(len(bitrates))
+    owl_med = [df[df["bitrate_kbps"] == br]["OWL_ms"].median() for br in bitrates]
+    owl_std = [df[df["bitrate_kbps"] == br]["OWL_ms"].std() for br in bitrates]
+    fig, ax = plt.subplots(figsize=(9, 5))
+    width = 0.35
+    ax.bar(x - width/2, stats["median_ms"], width, yerr=stats["std_ms"],
+           capsize=4, color="#2196F3", alpha=0.8, label="RTT")
+    ax.bar(x + width/2, owl_med, width, yerr=owl_std,
+           capsize=4, color="#4CAF50", alpha=0.8, label="One-Way Latency")
+    ax.set_xticks(x)
+    ax.set_xticklabels([f"{b:g} kbps" for b in bitrates])
+    ax.set_ylabel("Latency (ms)")
+    ax.set_title(f"RTT vs One-Way Latency per Bitrate  |  Packet size = {PACKET_SIZE_B} B")
+    ax.legend()
+    ax.grid(axis="y", linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_bar_rtt_owl.png"), dpi=150)
+    plt.close(fig)
+
+if __name__ == "__main__":
+    df = load_all_csvs(DATA_DIR)
+    df = remove_outliers(df)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    plot_rtt_line(build_stats(df), OUTPUT_DIR)
+    plot_owl_line(df, OUTPUT_DIR)
+    plot_boxplot(df, OUTPUT_DIR)
+    plot_bar_comparison(df, OUTPUT_DIR)
+\end{lstlisting}
+
+% ---- plot_latency.py --------------------------------------------------------
+\begin{lstlisting}[style=appendix-py, caption={Latency vs.\ packet-size plotting}, label={lst:latency-pktsize-plot}]
+"""
+Latency comparison across packet sizes and bitrates.
+
+Filename format: packet_size_<SIZE>B_<BITRATE>kb<timestamp>.csv
+Columns: test_num, packet_size_B, RTT_us, one_way_us
+"""
+
+import os, re, glob
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from pathlib import Path
+
+DATA_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = DATA_DIR
+
+PACKET_SIZES = [5, 16, 32, 48, 64]
+BITRATES = [9.6, 57.6, 115.2]
+
+COLORS = {5: "#2196F3", 16: "#4CAF50", 32: "#FF9800", 48: "#9C27B0", 64: "#F44336"}
+MARKERS = {9.6: "o", 57.6: "s", 115.2: "^"}
+LINESTYLES = {9.6: "-", 57.6: "--", 115.2: ":"}
+
+def parse_filename(path: str):
+    name = Path(path).stem
+    m = re.search(r'packet_size_(\d+)B_([\d._]+)kb', name)
+    if m:
+        return int(m.group(1)), float(m.group(2).replace("_", "."))
+    return None
+
+def load_all_csvs(data_dir: str):
+    pattern = os.path.join(data_dir, "packet_size_*.csv")
+    files = glob.glob(pattern)
+    if not files:
+        raise FileNotFoundError(f"No CSVs matching 'packet_size_*.csv' in {data_dir}")
+    data = {}
+    for f in sorted(files):
+        key = parse_filename(f)
+        if key is None:
+            continue
+        df = pd.read_csv(f)
+        df.columns = ["test_num", "packet_size_B", "RTT_us", "one_way_us"]
+        median_rtt = df["RTT_us"].median()
+        df = df[df["RTT_us"] < 5 * median_rtt]
+        data[key] = df
+    return data
+
+def summary_table(data: dict):
+    rows = []
+    for (ps, br), df in sorted(data.items()):
+        rows.append({
+            "Packet size (B)": ps, "Bitrate (kbps)": br,
+            "RTT mean (ms)": df["RTT_us"].mean()/1000,
+            "RTT median (ms)": df["RTT_us"].median()/1000,
+            "RTT std (ms)": df["RTT_us"].std()/1000,
+            "OWL median (ms)": df["one_way_us"].median()/1000,
+            "OWL std (ms)": df["one_way_us"].std()/1000,
+        })
+    return pd.DataFrame(rows)
+
+def plot_rtt_vs_packet_size(stats: pd.DataFrame, out_dir: str):
+    fig, ax = plt.subplots(figsize=(8, 5))
+    for br in sorted(stats["Bitrate (kbps)"].unique()):
+        sub = stats[stats["Bitrate (kbps)"] == br].sort_values("Packet size (B)")
+        ax.plot(sub["Packet size (B)"], sub["RTT median (ms)"],
+                marker=MARKERS[br], linestyle=LINESTYLES[br],
+                linewidth=1.8, markersize=7, label=f"{br} kbps")
+        ax.fill_between(sub["Packet size (B)"],
+                        sub["RTT median (ms)"] - sub["RTT std (ms)"],
+                        sub["RTT median (ms)"] + sub["RTT std (ms)"], alpha=0.10)
+    ax.set_xlabel("Packet Size (bytes)")
+    ax.set_ylabel("Median RTT (ms)")
+    ax.set_title("Round-Trip Time vs Packet Size")
+    ax.set_xticks(PACKET_SIZES)
+    ax.legend(title="Bitrate")
+    ax.grid(True, linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_rtt_vs_packet_size.png"), dpi=150)
+    plt.close(fig)
+
+def plot_owl_vs_packet_size(stats: pd.DataFrame, out_dir: str):
+    fig, ax = plt.subplots(figsize=(8, 5))
+    for br in sorted(stats["Bitrate (kbps)"].unique()):
+        sub = stats[stats["Bitrate (kbps)"] == br].sort_values("Packet size (B)")
+        ax.plot(sub["Packet size (B)"], sub["OWL median (ms)"],
+                marker=MARKERS[br], linestyle=LINESTYLES[br],
+                linewidth=1.8, markersize=7, label=f"{br} kbps")
+        ax.fill_between(sub["Packet size (B)"],
+                        sub["OWL median (ms)"] - sub["OWL std (ms)"],
+                        sub["OWL median (ms)"] + sub["OWL std (ms)"], alpha=0.10)
+    ax.set_xlabel("Packet Size (bytes)")
+    ax.set_ylabel("Median One-Way Latency (ms)")
+    ax.set_title("One-Way Latency vs Packet Size")
+    ax.set_xticks(PACKET_SIZES)
+    ax.legend(title="Bitrate")
+    ax.grid(True, linestyle="--", alpha=0.4)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_owl_vs_packet_size.png"), dpi=150)
+    plt.close(fig)
+
+def plot_grouped_bar(stats: pd.DataFrame, out_dir: str):
+    bitrates = sorted(stats["Bitrate (kbps)"].unique())
+    packet_sizes = sorted(stats["Packet size (B)"].unique())
+    n_br, n_ps = len(bitrates), len(packet_sizes)
+    x = np.arange(n_ps)
+    width = 0.7 / n_br
+    offsets = np.linspace(-(n_br-1)/2, (n_br-1)/2, n_br) * width
+    fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+    for ax, metric, ylabel in [
+        (axes[0], "RTT median (ms)", "Median RTT (ms)"),
+        (axes[1], "OWL median (ms)", "Median One-Way Latency (ms)"),
+    ]:
+        for i, br in enumerate(bitrates):
+            sub = stats[stats["Bitrate (kbps)"] == br].sort_values("Packet size (B)")
+            vals = [sub[sub["Packet size (B)"] == ps][metric].values[0]
+                    if len(sub[sub["Packet size (B)"] == ps]) else 0 for ps in packet_sizes]
+            std_col = metric.replace("median", "std")
+            errs = [sub[sub["Packet size (B)"] == ps][std_col].values[0]
+                    if len(sub[sub["Packet size (B)"] == ps]) else 0 for ps in packet_sizes]
+            ax.bar(x + offsets[i], vals, width, yerr=errs, label=f"{br} kbps", capsize=3)
+        ax.set_xlabel("Packet Size (bytes)")
+        ax.set_ylabel(ylabel)
+        ax.set_xticks(x)
+        ax.set_xticklabels([f"{ps} B" for ps in packet_sizes])
+        ax.legend(title="Bitrate")
+        ax.grid(axis="y", linestyle="--", alpha=0.4)
+    fig.suptitle("Latency Comparison -- All Packet Sizes and Bitrates")
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_grouped_bar.png"), dpi=150)
+    plt.close(fig)
+
+def plot_boxplot(data: dict, out_dir: str):
+    bitrates = sorted({k[1] for k in data})
+    packet_sizes = sorted({k[0] for k in data})
+    fig, axes = plt.subplots(1, len(bitrates), figsize=(5*len(bitrates), 5), sharey=True)
+    if len(bitrates) == 1:
+        axes = [axes]
+    for ax, br in zip(axes, bitrates):
+        groups = [data[(ps, br)]["RTT_us"].values/1000 for ps in packet_sizes if (ps, br) in data]
+        labels = [f"{ps} B" for ps in packet_sizes if (ps, br) in data]
+        bp = ax.boxplot(groups, labels=labels, patch_artist=True,
+                        medianprops={"color": "black", "linewidth": 2})
+        for patch, ps in zip(bp["boxes"], [ps for ps in packet_sizes if (ps, br) in data]):
+            patch.set_facecolor(COLORS.get(ps, "#888")); patch.set_alpha(0.75)
+        ax.set_title(f"{br} kbps")
+        ax.grid(axis="y", linestyle="--", alpha=0.4)
+    axes[0].set_ylabel("RTT (ms)")
+    fig.suptitle("RTT Distribution -- Grouped by Bitrate")
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "plot_boxplot_rtt.png"), dpi=150)
+    plt.close(fig)
+
+def plot_heatmap(stats: pd.DataFrame, out_dir: str):
+    import matplotlib.colors as mcolors
+    for metric, title, fname in [
+        ("RTT median (ms)", "Median RTT (ms)", "plot_heatmap_rtt.png"),
+        ("OWL median (ms)", "Median One-Way Latency (ms)", "plot_heatmap_owl.png"),
+    ]:
+        pivot = stats.pivot(index="Packet size (B)", columns="Bitrate (kbps)", values=metric)
+        fig, ax = plt.subplots(figsize=(6, 4))
+        im = ax.imshow(pivot.values, aspect="auto", cmap="YlOrRd",
+                       norm=mcolors.Normalize(vmin=pivot.values.min(), vmax=pivot.values.max()))
+        ax.set_xticks(range(len(pivot.columns)))
+        ax.set_xticklabels([f"{c} kbps" for c in pivot.columns])
+        ax.set_yticks(range(len(pivot.index)))
+        ax.set_yticklabels([f"{r} B" for r in pivot.index])
+        ax.set_title(f"Heatmap -- {title}")
+        for i in range(len(pivot.index)):
+            for j in range(len(pivot.columns)):
+                val = pivot.values[i, j]
+                if not np.isnan(val):
+                    ax.text(j, i, f"{val:.2f}", ha="center", va="center", fontsize=9,
+                            color="white" if val > pivot.values.max()*0.65 else "black")
+        plt.colorbar(im, ax=ax, label=title)
+        fig.tight_layout()
+        fig.savefig(os.path.join(out_dir, fname), dpi=150)
+        plt.close(fig)
+
+if __name__ == "__main__":
+    data = load_all_csvs(DATA_DIR)
+    stats = summary_table(data)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    plot_rtt_vs_packet_size(stats, OUTPUT_DIR)
+    plot_owl_vs_packet_size(stats, OUTPUT_DIR)
+    plot_grouped_bar(stats, OUTPUT_DIR)
+    plot_boxplot(data, OUTPUT_DIR)
+    plot_heatmap(stats, OUTPUT_DIR)
+\end{lstlisting}
+
+\endinput

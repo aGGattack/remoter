@@ -69,15 +69,15 @@
 		(uuid "13ed2533-757b-4680-8ca8-98d1b58b3785")
 	)
 	(fp_circle
-		(center 16.7 -16.2)
-		(end 18.2 -16.2)
+		(center 0 0)
+		(end -9.9 -9.9)
 		(stroke
-			(width 0.1)
+			(width 0.05)
 			(type default)
 		)
 		(fill no)
-		(layer "F.SilkS")
-		(uuid "5ef8f3cd-7f27-4d39-8377-74c7d050f647")
+		(layer "Edge.Cuts")
+		(uuid "408140f3-6ae6-451a-88ba-63f112f9b600")
 	)
 	(fp_text user "Xout"
 		(at -3.7 14.5 0)
@@ -158,7 +158,7 @@
 		)
 	)
 	(pad "" np_thru_hole circle
-		(at -16.8 -16.3)
+		(at -15 -14.5)
 		(size 3.2 3.2)
 		(drill 3.2)
 		(layers "*.Mask")
@@ -166,7 +166,7 @@
 		(uuid "9ab2778f-2ddc-455e-9d60-efeff369933c")
 	)
 	(pad "" np_thru_hole circle
-		(at -16.8 16.3)
+		(at -15 14.5)
 		(size 3.2 3.2)
 		(drill 3.2)
 		(layers "*.Mask")
@@ -174,7 +174,7 @@
 		(uuid "77528439-5ac0-4f39-bdcc-158e737ba842")
 	)
 	(pad "" np_thru_hole circle
-		(at 16.7 -16.2)
+		(at 15 -14.5)
 		(size 3.2 3.2)
 		(drill 3.2)
 		(layers "*.Mask")
@@ -182,7 +182,7 @@
 		(uuid "eca4d028-73c2-48eb-b3fb-657422e9dd78")
 	)
 	(pad "" np_thru_hole circle
-		(at 16.8 16.3)
+		(at 15 14.5)
 		(size 3.2 3.2)
 		(drill 3.2)
 		(layers "*.Mask")

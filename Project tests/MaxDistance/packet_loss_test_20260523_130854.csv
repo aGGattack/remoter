@@ -1,0 +1,5 @@
+Distance_m,Received_Packets,Lost_Packets,Packet_Loss_Percent
+20,38,62,62.0
+40,15,85,85.0
+50,13,87,87.0
+70,48,52,52.0
